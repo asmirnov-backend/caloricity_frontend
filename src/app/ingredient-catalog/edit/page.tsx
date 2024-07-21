@@ -15,4 +15,6 @@ interface IngredientCatalogForm {
   carbohydrates: number;
 }
 
-export default function Page() {}
+export default function Page() {
+  return <h1>ifuefuewfuewfwe</h1>;
+}
