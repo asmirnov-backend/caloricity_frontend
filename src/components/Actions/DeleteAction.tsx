@@ -54,6 +54,7 @@ export const DeleteAction = ({ id, url }: { id: string; url: string }) => {
                     if (res.ok) {
                       onClose();
                       enqueueSnackbar("Успешно", { variant: "success" });
+                      setTimeout(() => location.reload(), 2500);
                     } else {
                       enqueueSnackbar("Ошибка", { variant: "error" });
                       console.log(await res.json());

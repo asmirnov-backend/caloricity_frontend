@@ -22,7 +22,7 @@ export const IngredientCatalogTable = () => {
   const { data, isLoading } = useSWR(
     `http://localhost:8080/api/caloricity/ingredient-catalog?page=${
       page - 1
-    }&size=${rowsPerPage}`,
+    }&size=${rowsPerPage}&sort=updatedAt,desc`,
     (resource: string, init: any) =>
       fetch(resource, init).then((res) => res.json()),
     {
