@@ -14,15 +14,22 @@ import {
 import React, { useMemo } from "react";
 import useSWR from "swr";
 import { Actions } from "../Actions/Actions";
+import { useSearchParams } from "next/navigation";
 
 export const IngredientCatalogTable = () => {
+  const searchParams = useSearchParams();
+  const search = searchParams?.get("search");
+  const searchWithParamName = `&search=${search}`;
+
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 13;
 
   const { data, isLoading } = useSWR(
     `http://localhost:8080/api/caloricity/ingredient-catalog?page=${
       page - 1
-    }&size=${rowsPerPage}&sort=updatedAt,desc`,
+    }&size=${rowsPerPage}&sort=updatedAt,desc${
+      search ? searchWithParamName : ""
+    }`,
     (resource: string, init: any) =>
       fetch(resource, init).then((res) => res.json()),
     {
@@ -35,9 +42,6 @@ export const IngredientCatalogTable = () => {
       ? Math.ceil(data.totalElements / rowsPerPage)
       : 0;
   }, [data?.totalElements, rowsPerPage]);
-
-  const loadingState =
-    isLoading || data?.content.length === 0 ? "loading" : "idle";
 
   return (
     <div className=" w-full flex flex-col gap-4">
@@ -85,7 +89,7 @@ export const IngredientCatalogTable = () => {
         <TableBody
           items={data?.content ?? []}
           loadingContent={<Spinner />}
-          loadingState={loadingState}
+          loadingState={isLoading ? "loading" : "idle"}
         >
           {(item: any) => (
             <TableRow key={item?.id}>
