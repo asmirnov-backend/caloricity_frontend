@@ -19,6 +19,7 @@ import useHandleSearch from "../../hooks/useHandleSearch";
 import React, { useEffect, useMemo } from "react";
 import useIngredientCatalogPageQuery from "./api/useIngredientCatalogPageQuery";
 import { Actions } from "../../components/Actions/Actions";
+import { backendUrl } from "../../utils/backendUrl.const";
 
 export default function Page() {
   const pathname = usePathname();
@@ -145,7 +146,7 @@ export default function Page() {
                     <TableCell>
                       <Actions
                         id={item?.id}
-                        url="http://localhost:8080/api/caloricity/ingredient-catalog"
+                        url={`${backendUrl}/caloricity/ingredient-catalog`}
                       />
                     </TableCell>
                   )

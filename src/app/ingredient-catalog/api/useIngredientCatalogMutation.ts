@@ -1,5 +1,6 @@
 import useSWRMutation from "swr/mutation";
 import { IngredientCatalogForm } from "../interfaces/IngredientCatalogForm.interface";
+import { backendUrl } from "../../../utils/backendUrl.const";
 
 export default function useIngredientCatalogMutation(
   input:
@@ -11,7 +12,7 @@ export default function useIngredientCatalogMutation(
   const add = input.method == "PUT" ? "/" + input.id : "";
 
   return useSWRMutation(
-    "http://localhost:8080/api/caloricity/ingredient-catalog" + add,
+    `${backendUrl}/caloricity/ingredient-catalog` + add,
     (url: string, { arg }: { arg: IngredientCatalogForm }) =>
       fetch(url, {
         method: input.method,
