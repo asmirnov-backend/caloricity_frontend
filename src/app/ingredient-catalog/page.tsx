@@ -4,26 +4,14 @@ import { Input, Link, Button } from "@nextui-org/react";
 import { IngredientCatalogTable } from "../../components/IngredientCatalogTable/IngredientCatalogTable";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import useHandleSearch from "../../hooks/useHandleSearch";
 
 export default function Page() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
-  const handleSearch = useDebouncedCallback((term: string) => {
-    if (searchParams) {
-      const params = new URLSearchParams(searchParams);
-      if (term) {
-        params.set("search", term);
-      } else {
-        params.delete("search");
-      }
-
-      params.set("page", "1");
-
-      replace(`${pathname}?${params.toString()}`);
-    }
-  }, 500);
+  const handleSearch = useHandleSearch();
 
   return (
     <div className="my-5 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
