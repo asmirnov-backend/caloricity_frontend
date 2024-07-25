@@ -19,6 +19,8 @@ export default function Page() {
         params.delete("search");
       }
 
+      params.set("page", "1");
+
       replace(`${pathname}?${params.toString()}`);
     }
   }, 500);

@@ -11,18 +11,42 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import useSWR from "swr";
 import { Actions } from "../Actions/Actions";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const IngredientCatalogTable = () => {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const search = searchParams?.get("search");
   const searchWithParamName = `&search=${search}`;
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams!);
+    if (!params.has("page")) {
+      params.set("page", "1");
+      replace(`${pathname}?${params.toString()}`);
+    }
+  }, [searchParams, pathname, replace]);
 
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 13;
+
+  const setPageWithUrl = (pageI: number) => {
+    const params = new URLSearchParams(searchParams!);
+    params.set("page", pageI.toString());
+    replace(`${pathname}?${params.toString()}`);
+    setPage(pageI);
+  };
+
+  useEffect(() => {
+    const pageParam = parseInt(searchParams!.get("page") ?? "1") || 1;
+    if (pageParam !== page) {
+      setPage(pageParam);
+    }
+  }, [searchParams]);
 
   const { data, isLoading } = useSWR(
     `http://localhost:8080/api/caloricity/ingredient-catalog?page=${
@@ -57,7 +81,7 @@ export const IngredientCatalogTable = () => {
                 color="primary"
                 page={page}
                 total={pages}
-                onChange={(page) => setPage(page)}
+                onChange={(page) => setPageWithUrl(page)}
               />
             </div>
           ) : null
