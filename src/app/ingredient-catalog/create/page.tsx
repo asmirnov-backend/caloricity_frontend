@@ -3,7 +3,7 @@
 import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { IngredientCatalogForm } from "../IngredientCatalogForm.interface";
+import { IngredientCatalogForm } from "../interfaces/IngredientCatalogForm.interface";
 import useIngredientCatalogMutation from "../api/useIngredientCatalogMutation";
 import useSubmit from "../api/useSubmit";
 

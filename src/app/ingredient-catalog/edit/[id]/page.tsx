@@ -3,7 +3,7 @@
 import { Input, Button, CircularProgress } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { IngredientCatalogForm } from "../../IngredientCatalogForm.interface";
+import { IngredientCatalogForm } from "../../interfaces/IngredientCatalogForm.interface";
 import useIngredientCatalogMutation from "../../api/useIngredientCatalogMutation";
 import useIngredientCatalogQuery from "../../api/useIngredientCatalogQuery";
 import useSubmit from "../../api/useSubmit";
@@ -19,6 +19,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const { trigger, isMutating } = useIngredientCatalogMutation({
     method: "PUT",
+    id,
   });
 
   const { data, isLoading } = useIngredientCatalogQuery(id);

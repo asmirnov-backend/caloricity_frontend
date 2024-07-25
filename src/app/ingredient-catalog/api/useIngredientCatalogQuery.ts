@@ -1,4 +1,4 @@
-import { IngredientCatalogForm } from "../IngredientCatalogForm.interface";
+import { IngredientCatalogForm } from "../interfaces/IngredientCatalogForm.interface";
 import useSWR from "swr";
 
 export default function useIngredientCatalogQuery(id: string) {
