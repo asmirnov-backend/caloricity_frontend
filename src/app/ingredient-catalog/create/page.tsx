@@ -1,32 +1,11 @@
 "use client";
-import useSWRMutation from "swr/mutation";
 
 import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { useSnackbar } from "notistack";
-
-async function sendRequest(
-  url: string,
-  { arg }: { arg: IngredientCatalogForm }
-) {
-  return fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-}
-
-interface IngredientCatalogForm {
-  name: string;
-  ediblePart: number;
-  water: number;
-  proteins: number;
-  fats: number;
-  carbohydrates: number;
-}
+import { IngredientCatalogForm } from "../IngredientCatalogForm.interface";
+import useIngredientCatalogMutation from "../api/useIngredientCatalogMutation";
+import useSubmit from "../api/useSubmit";
 
 export default function Page() {
   const {
@@ -35,23 +14,12 @@ export default function Page() {
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<IngredientCatalogForm>();
-  const { enqueueSnackbar } = useSnackbar();
 
-  const { trigger, isMutating } = useSWRMutation(
-    "http://localhost:8080/api/caloricity/ingredient-catalog",
-    sendRequest
-  );
+  const { trigger, isMutating } = useIngredientCatalogMutation({
+    method: "POST",
+  });
 
-  const onSubmit = async (params: IngredientCatalogForm) => {
-    const res = await trigger(params);
-    if (res.ok) {
-      enqueueSnackbar("Успешно", { variant: "success" });
-      reset();
-    } else {
-      enqueueSnackbar("Ошибка", { variant: "error" });
-      console.log(await res.json());
-    }
-  };
+  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger, reset });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

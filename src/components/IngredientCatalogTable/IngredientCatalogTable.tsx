@@ -12,15 +12,13 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import React, { useEffect, useMemo } from "react";
-import useSWR from "swr";
 import { Actions } from "../Actions/Actions";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import useIngredientCatalogPageQuery from "../../app/ingredient-catalog/api/useIngredientCatalogPageQuery";
 
 export const IngredientCatalogTable = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const search = searchParams?.get("search");
-  const searchWithParamName = `&search=${search}`;
   const { replace } = useRouter();
 
   useEffect(() => {
@@ -48,18 +46,10 @@ export const IngredientCatalogTable = () => {
     }
   }, [searchParams]);
 
-  const { data, isLoading } = useSWR(
-    `http://localhost:8080/api/caloricity/ingredient-catalog?page=${
-      page - 1
-    }&size=${rowsPerPage}&sort=updatedAt,desc${
-      search ? searchWithParamName : ""
-    }`,
-    (resource: string, init: any) =>
-      fetch(resource, init).then((res) => res.json()),
-    {
-      keepPreviousData: true,
-    }
-  );
+  const { data, isLoading } = useIngredientCatalogPageQuery({
+    page,
+    rowsPerPage,
+  });
 
   const pages = useMemo(() => {
     return data?.totalElements

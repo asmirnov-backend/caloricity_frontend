@@ -1,33 +1,12 @@
 "use client";
-import useSWRMutation from "swr/mutation";
 
 import { Input, Button, CircularProgress } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { useSnackbar } from "notistack";
-import useSWR from "swr";
-
-async function sendRequest(
-  url: string,
-  { arg }: { arg: IngredientCatalogForm }
-) {
-  return fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(arg),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-}
-
-interface IngredientCatalogForm {
-  name: string;
-  ediblePart: number;
-  water: number;
-  proteins: number;
-  fats: number;
-  carbohydrates: number;
-}
+import { IngredientCatalogForm } from "../../IngredientCatalogForm.interface";
+import useIngredientCatalogMutation from "../../api/useIngredientCatalogMutation";
+import useIngredientCatalogQuery from "../../api/useIngredientCatalogQuery";
+import useSubmit from "../../api/useSubmit";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -37,30 +16,15 @@ export default function Page({ params }: { params: { id: string } }) {
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<IngredientCatalogForm>();
-  const { enqueueSnackbar } = useSnackbar();
 
-  const { trigger, isMutating } = useSWRMutation(
-    `http://localhost:8080/api/caloricity/ingredient-catalog/${id}`,
-    sendRequest
-  );
-  const { data, isLoading } = useSWR<IngredientCatalogForm>(
-    `http://localhost:8080/api/caloricity/ingredient-catalog/${id}`,
-    (resource: string, init: any) =>
-      fetch(resource, init).then((res) => res.json()),
-    {}
-  );
+  const { trigger, isMutating } = useIngredientCatalogMutation({
+    method: "PUT",
+  });
+
+  const { data, isLoading } = useIngredientCatalogQuery(id);
+  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;
-
-  const onSubmit = async (params: IngredientCatalogForm) => {
-    const res = await trigger(params);
-    if (res.ok) {
-      enqueueSnackbar("Успешно", { variant: "success" });
-    } else {
-      enqueueSnackbar("Ошибка", { variant: "error" });
-      console.log(await res.json());
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -144,7 +108,13 @@ export default function Page({ params }: { params: { id: string } }) {
         <Button color="primary" disabled={isMutating} type="submit">
           Сохранить
         </Button>
-        <Button color="danger" variant="flat" as={Link} href="..">
+        <Button
+          color="danger"
+          disabled={isMutating}
+          variant="flat"
+          as={Link}
+          href=".."
+        >
           Назад
         </Button>
       </div>

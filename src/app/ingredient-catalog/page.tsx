@@ -39,7 +39,7 @@ export default function Page() {
             defaultValue={searchParams?.get("search")?.toString() ?? ""}
           />
         </div>
-        <div className="flex flex-row gap-3 flex-wrap">
+        <div className="flex flex-row gap-5 flex-wrap">
           <Button as={Link} href={pathname + "/create"} color="primary">
             Добавить
           </Button>
