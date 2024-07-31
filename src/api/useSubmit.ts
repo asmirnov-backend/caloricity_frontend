@@ -6,7 +6,7 @@ import { TriggerWithArgs } from "swr/mutation";
 export default function useSubmit<T extends FieldValues>(input: {
   trigger: TriggerWithArgs<Response, any, string, T>;
   reset?: UseFormReset<T>;
-  back?: string;
+  backTo?: string;
 }) {
   const { enqueueSnackbar } = useSnackbar();
   const { replace } = useRouter();
@@ -15,8 +15,8 @@ export default function useSubmit<T extends FieldValues>(input: {
     const res = await input.trigger(params);
     if (res.ok) {
       enqueueSnackbar("Успешно", { variant: "success" });
-      if (input.back) {
-        setTimeout(() => replace(input.back!), 1000);
+      if (input.backTo) {
+        setTimeout(() => replace(input.backTo!), 1000);
       } else {
         if (input.reset) input.reset();
       }

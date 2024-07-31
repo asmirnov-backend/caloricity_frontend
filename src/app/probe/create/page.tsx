@@ -9,7 +9,6 @@ import { ProbeForm } from "../interfaces/ProbeForm.interface";
 
 export default function Page() {
   const {
-    reset,
     register,
     handleSubmit,
     formState: { errors: formErrors },
@@ -19,22 +18,11 @@ export default function Page() {
     method: "POST",
   });
 
-  const onSubmit = useSubmit<ProbeForm>({ trigger, reset });
+  const onSubmit = useSubmit<ProbeForm>({ trigger, backTo: ".." });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-        <Input
-          isRequired
-          label="Название"
-          variant="bordered"
-          {...register("name", {
-            required: "Поле обязательно",
-            minLength: { value: 2, message: "Слишком короткое название" },
-          })}
-          isInvalid={formErrors.name ? true : false}
-          errorMessage={formErrors.name?.message?.toString()}
-        />
         <Select
           isRequired
           label="Тип"
@@ -63,6 +51,17 @@ export default function Page() {
           })}
           isInvalid={formErrors.code ? true : false}
           errorMessage={formErrors.code?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Название"
+          variant="bordered"
+          {...register("name", {
+            required: "Поле обязательно",
+            minLength: { value: 2, message: "Слишком короткое название" },
+          })}
+          isInvalid={formErrors.name ? true : false}
+          errorMessage={formErrors.name?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Создать

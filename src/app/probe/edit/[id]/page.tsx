@@ -65,18 +65,6 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-        <Input
-          label="Название"
-          variant="bordered"
-          isRequired
-          {...register("name", {
-            value: data?.name,
-            required: "Поле обязательно",
-            minLength: { value: 2, message: "Слишком короткое название" },
-          })}
-          isInvalid={formErrors.name ? true : false}
-          errorMessage={formErrors.name?.message?.toString()}
-        />
         <Select
           isRequired
           label="Тип"
@@ -108,6 +96,19 @@ export default function Page({ params }: { params: { id: string } }) {
           isInvalid={formErrors.code ? true : false}
           errorMessage={formErrors.code?.message?.toString()}
         />
+        <Input
+          label="Название"
+          variant="bordered"
+          isRequired
+          {...register("name", {
+            value: data?.name,
+            required: "Поле обязательно",
+            minLength: { value: 2, message: "Слишком короткое название" },
+          })}
+          isInvalid={formErrors.name ? true : false}
+          errorMessage={formErrors.name?.message?.toString()}
+        />
+
         <Button color="primary" disabled={isMutating} type="submit">
           Сохранить
         </Button>
@@ -128,8 +129,9 @@ export default function Page({ params }: { params: { id: string } }) {
           <div className="flex flex-row gap-3 w-full">
             <h3 className="text-xl font-semibold">Ингредиенты</h3>
           </div>
-          <div className="flex flex-row gap-5 flex-wrap">
+          <div className="flex w-1/5 flex-row gap-5 flex-wrap">
             <Button
+              className="flex-auto"
               as={Link}
               href={`/ingredient/create?probe=${id}`}
               color="primary"

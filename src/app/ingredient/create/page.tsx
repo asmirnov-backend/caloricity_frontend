@@ -32,7 +32,7 @@ export default function Page() {
 
   const onSubmit = useSubmit<IngredientForm>({
     trigger,
-    back: backLink,
+    backTo: backLink,
   });
 
   return (
