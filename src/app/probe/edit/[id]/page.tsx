@@ -24,14 +24,12 @@ import useProbeMutation from "../../api/useProbeMutation";
 import useProbeQuery from "../../api/useProbeQuery";
 import { ProbeForm } from "../../interfaces/ProbeForm.interface";
 import { backendUrl } from "../../../../utils/backendUrl.const";
-import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import useIngredientPageQuery from "../../api/useIngredientPageQuery";
 import { DeleteAction } from "../../../../components/Actions/DeleteAction";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
-  const pathname = usePathname();
   const [page, setPage] = useState(1);
   const rowsPerPage = 13;
   const { data: dataIngredient, isLoading: isLoadingIngredient } =
@@ -63,65 +61,67 @@ export default function Page({ params }: { params: { id: string } }) {
   if (isLoading) return <CircularProgress aria-label="Loading..." />;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-        <Select
-          isRequired
-          label="Тип"
-          variant="bordered"
-          {...register("type", {
-            value: data?.type,
-            required: "Поле обязательно",
-          })}
-          isInvalid={formErrors.type ? true : false}
-          errorMessage={formErrors.type?.message?.toString()}
-        >
-          {[
-            { key: "FIRST", label: "Первое" },
-            { key: "SECOND", label: "Второе" },
-            { key: "THIRD", label: "Третье" },
-          ].map((animal) => (
-            <SelectItem key={animal.key}>{animal.label}</SelectItem>
-          ))}
-        </Select>
-        <Input
-          label="Код"
-          type="string"
-          isRequired
-          variant="bordered"
-          {...register("code", {
-            value: data?.code,
-            required: "Поле обязательно",
-          })}
-          isInvalid={formErrors.code ? true : false}
-          errorMessage={formErrors.code?.message?.toString()}
-        />
-        <Input
-          label="Название"
-          variant="bordered"
-          isRequired
-          {...register("name", {
-            value: data?.name,
-            required: "Поле обязательно",
-            minLength: { value: 2, message: "Слишком короткое название" },
-          })}
-          isInvalid={formErrors.name ? true : false}
-          errorMessage={formErrors.name?.message?.toString()}
-        />
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
+          <Select
+            isRequired
+            label="Тип"
+            variant="bordered"
+            {...register("type", {
+              value: data?.type,
+              required: "Поле обязательно",
+            })}
+            isInvalid={formErrors.type ? true : false}
+            errorMessage={formErrors.type?.message?.toString()}
+          >
+            {[
+              { key: "FIRST", label: "Первое" },
+              { key: "SECOND", label: "Второе" },
+              { key: "THIRD", label: "Третье" },
+            ].map((animal) => (
+              <SelectItem key={animal.key}>{animal.label}</SelectItem>
+            ))}
+          </Select>
+          <Input
+            label="Код"
+            type="string"
+            isRequired
+            variant="bordered"
+            {...register("code", {
+              value: data?.code,
+              required: "Поле обязательно",
+            })}
+            isInvalid={formErrors.code ? true : false}
+            errorMessage={formErrors.code?.message?.toString()}
+          />
+          <Input
+            label="Название"
+            variant="bordered"
+            isRequired
+            {...register("name", {
+              value: data?.name,
+              required: "Поле обязательно",
+              minLength: { value: 2, message: "Слишком короткое название" },
+            })}
+            isInvalid={formErrors.name ? true : false}
+            errorMessage={formErrors.name?.message?.toString()}
+          />
 
-        <Button color="primary" disabled={isMutating} type="submit">
-          Сохранить
-        </Button>
-        <Button
-          color="danger"
-          disabled={isMutating}
-          variant="flat"
-          as={Link}
-          href=".."
-        >
-          Назад
-        </Button>
-      </div>
+          <Button color="primary" disabled={isMutating} type="submit">
+            Сохранить
+          </Button>
+          <Button
+            color="danger"
+            disabled={isMutating}
+            variant="flat"
+            as={Link}
+            href=".."
+          >
+            Назад
+          </Button>
+        </div>
+      </form>
 
       <Divider />
       <div className="my-5 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
@@ -173,6 +173,9 @@ export default function Page({ params }: { params: { id: string } }) {
               <TableColumn align="center" className="text-base" key="net">
                 Масса нетто, г
               </TableColumn>
+              <TableColumn align="center" className="text-base" key="actions">
+                Действия
+              </TableColumn>
             </TableHeader>
             <TableBody
               items={dataIngredient?.content ?? []}
@@ -191,7 +194,7 @@ export default function Page({ params }: { params: { id: string } }) {
                         <div className="flex items-center gap-4 justify-center">
                           <DeleteAction
                             id={item?.id}
-                            url={`${backendUrl}/ingredient`}
+                            url={`${backendUrl}/caloricity/ingredient`}
                           />
                         </div>
                       </TableCell>
@@ -203,6 +206,6 @@ export default function Page({ params }: { params: { id: string } }) {
           </Table>
         </div>
       </div>
-    </form>
+    </>
   );
 }
