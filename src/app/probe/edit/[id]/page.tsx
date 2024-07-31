@@ -142,6 +142,7 @@ export default function Page({ params }: { params: { id: string } }) {
         </div>
         <div className="max-w-[90rem] mx-auto w-full">
           <Table
+            aria-label="Таблица ингридиентов"
             bottomContent={
               pages > 0 ? (
                 <div className="flex w-full justify-center">

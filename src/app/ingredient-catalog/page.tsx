@@ -91,7 +91,7 @@ export default function Page() {
       </div>
       <div className="max-w-[90rem] mx-auto w-full">
         <Table
-          aria-label="Example table with client async pagination"
+          aria-label="Таблица для каталога ингридиентов"
           bottomContent={
             pages > 0 ? (
               <div className="flex w-full justify-center">

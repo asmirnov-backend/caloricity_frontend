@@ -18,7 +18,7 @@ export default function Page() {
     method: "POST",
   });
 
-  const onSubmit = useSubmit<ProbeForm>({ trigger, backTo: ".." });
+  const onSubmit = useSubmit<ProbeForm>({ trigger, backTo: "." });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

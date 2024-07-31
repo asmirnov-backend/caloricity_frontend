@@ -13,6 +13,7 @@ import useSubmit from "../../../api/useSubmit";
 import useIngredientMutation from "../api/useIngredientMutation";
 import { useSearchParams } from "next/navigation";
 import useIngredientCatalogPageQuery from "../../ingredient-catalog/api/useIngredientCatalogPageQuery";
+import { useState } from "react";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -35,9 +36,45 @@ export default function Page() {
     backTo: backLink,
   });
 
+  const [valueAutocomplete, setValueAutocomplete] = useState<string>();
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
+        <Input
+          isRequired
+          readOnly
+          isDisabled
+          label="Идентификатор пробы"
+          variant="bordered"
+          {...register("probeId", {
+            required: "Поле обязательно",
+            value: searchParams!.get("probe") ?? undefined,
+          })}
+          isInvalid={formErrors.probeId ? true : false}
+          errorMessage={formErrors.probeId?.message?.toString()}
+        />
+        <Autocomplete
+          isRequired
+          variant="bordered"
+          defaultItems={data?.content ?? []}
+          label="Ингредиент из католога"
+          selectedKey={valueAutocomplete}
+          onSelectionChange={(e) =>
+            setValueAutocomplete(e?.toString() ?? undefined)
+          }
+          {...register("ingredientInCatalogId", {
+            required: "Поле обязательно",
+            value: valueAutocomplete ?? undefined,
+            setValueAs: (_) => valueAutocomplete,
+          })}
+          isInvalid={formErrors.ingredientInCatalogId ? true : false}
+          errorMessage={formErrors.ingredientInCatalogId?.message?.toString()}
+        >
+          {(e: any) => (
+            <AutocompleteItem key={e.value}>{e.name}</AutocompleteItem>
+          )}
+        </Autocomplete>
         <Input
           isRequired
           label="Масса брутто, г"
@@ -64,35 +101,7 @@ export default function Page() {
           isInvalid={formErrors.net ? true : false}
           errorMessage={formErrors.net?.message?.toString()}
         />
-        <Autocomplete
-          isRequired
-          variant="bordered"
-          defaultItems={data?.content ?? []}
-          label="Ингредиент из католога"
-          {...register("ingredientInCatalogId", {
-            required: "Поле обязательно",
-          })}
-          isInvalid={formErrors.ingredientInCatalogId ? true : false}
-          errorMessage={formErrors.ingredientInCatalogId?.message?.toString()}
-        >
-          {(data?.content ?? []).map((e: any) => (
-            <AutocompleteItem textValue={e.id} key={e.id}>
-              {e.name}
-            </AutocompleteItem>
-          ))}
-        </Autocomplete>
-        <Input
-          isRequired
-          readOnly
-          label="Идентификатор пробы"
-          variant="bordered"
-          {...register("probeId", {
-            required: "Поле обязательно",
-            value: searchParams!.get("probe") ?? undefined,
-          })}
-          isInvalid={formErrors.probeId ? true : false}
-          errorMessage={formErrors.probeId?.message?.toString()}
-        />
+
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
         </Button>

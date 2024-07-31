@@ -1,4 +1,4 @@
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
 import { FieldValues, UseFormReset } from "react-hook-form";
 import { TriggerWithArgs } from "swr/mutation";
