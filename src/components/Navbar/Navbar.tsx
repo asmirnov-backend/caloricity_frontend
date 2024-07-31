@@ -42,7 +42,10 @@ export default function Navbar() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="#" color="foreground">
+          <Link
+            href="/probe"
+            color={pathname?.includes("probe") ? "primary" : "foreground"}
+          >
             Пробы
           </Link>
         </NavbarItem>

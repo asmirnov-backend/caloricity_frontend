@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { IngredientCatalogForm } from "../interfaces/IngredientCatalogForm.interface";
 import useIngredientCatalogMutation from "../api/useIngredientCatalogMutation";
-import useSubmit from "../api/useSubmit";
+import useSubmit from "../../../api/useSubmit";
 
 export default function Page() {
   const {
@@ -25,6 +25,7 @@ export default function Page() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
         <Input
+          isRequired
           label="Название"
           variant="bordered"
           {...register("name", {
@@ -35,6 +36,7 @@ export default function Page() {
           errorMessage={formErrors.name?.message?.toString()}
         />
         <Input
+          isRequired
           label="Съедобная часть, г"
           type="number"
           variant="bordered"
@@ -46,6 +48,7 @@ export default function Page() {
           errorMessage={formErrors.ediblePart?.message?.toString()}
         />
         <Input
+          isRequired
           label="Вода, г"
           type="number"
           variant="bordered"
@@ -57,6 +60,7 @@ export default function Page() {
           errorMessage={formErrors.water?.message?.toString()}
         />
         <Input
+          isRequired
           label="Белки, г"
           type="number"
           variant="bordered"
@@ -68,6 +72,7 @@ export default function Page() {
           errorMessage={formErrors.proteins?.message?.toString()}
         />
         <Input
+          isRequired
           label="Жиры, г"
           type="number"
           variant="bordered"
@@ -79,6 +84,7 @@ export default function Page() {
           errorMessage={formErrors.fats?.message?.toString()}
         />
         <Input
+          isRequired
           label="Углеводы, г"
           type="number"
           variant="bordered"
