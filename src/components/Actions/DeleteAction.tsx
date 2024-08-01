@@ -10,18 +10,24 @@ import {
 } from "@nextui-org/react";
 import { Trash2 } from "lucide-react";
 import { useSnackbar } from "notistack";
-import useSWRMutation from "swr/mutation";
+import useDeleteMutation from "../../api/useDeleteMutation";
 
-async function sendRequest(url: string) {
-  return fetch(url, {
-    method: "DELETE",
-  });
-}
-
-export const DeleteAction = ({ id, url }: { id: string; url: string }) => {
+export const DeleteAction = (input: { id: string; url: string }) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  const { trigger, isMutating } = useSWRMutation(`${url}/${id}`, sendRequest);
+  const { trigger, isMutating } = useDeleteMutation(input);
   const { enqueueSnackbar } = useSnackbar();
+
+  const doDelete = async () => {
+    const res = await trigger();
+    if (res.ok) {
+      onClose();
+      enqueueSnackbar("Успешно удалено", { variant: "success" });
+      setTimeout(() => location.reload(), 2500);
+    } else {
+      enqueueSnackbar("Ошибка", { variant: "error" });
+      console.log(await res.json());
+    }
+  };
 
   return (
     <>
@@ -49,17 +55,7 @@ export const DeleteAction = ({ id, url }: { id: string; url: string }) => {
                 <Button
                   color="danger"
                   isDisabled={isMutating}
-                  onPress={async () => {
-                    const res = await trigger();
-                    if (res.ok) {
-                      onClose();
-                      enqueueSnackbar("Успешно", { variant: "success" });
-                      setTimeout(() => location.reload(), 2500);
-                    } else {
-                      enqueueSnackbar("Ошибка", { variant: "error" });
-                      console.log(await res.json());
-                    }
-                  }}
+                  onPress={doDelete}
                 >
                   Удалить
                 </Button>

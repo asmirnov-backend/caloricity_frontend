@@ -4,7 +4,6 @@ import {
   Input,
   Button,
   CircularProgress,
-  getKeyValue,
   Pagination,
   Spinner,
   Table,
@@ -14,8 +13,6 @@ import {
   TableHeader,
   TableRow,
   Divider,
-  Select,
-  SelectItem,
 } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
@@ -210,16 +207,16 @@ export default function Page({ params }: { params: { id: string } }) {
                   <TableCell className="text-center">{item.gross}</TableCell>
                   <TableCell className="text-center">{item.net}</TableCell>
                   <TableCell className="text-center">
-                    {Number(item.water).toPrecision(2)}
+                    {Number(item.water).toPrecision(3)}
                   </TableCell>
                   <TableCell className="text-center">
-                    {Number(item.proteins).toPrecision(2)}
+                    {Number(item.proteins).toPrecision(3)}
                   </TableCell>
                   <TableCell className="text-center">
-                    {Number(item.fats).toPrecision(2)}
+                    {Number(item.fats).toPrecision(3)}
                   </TableCell>
                   <TableCell className="text-center">
-                    {Number(item.carbohydrates).toPrecision(2)}
+                    {Number(item.carbohydrates).toPrecision(3)}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-4 justify-center">

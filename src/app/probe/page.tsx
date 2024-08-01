@@ -4,7 +4,6 @@ import {
   Input,
   Link,
   Button,
-  getKeyValue,
   Pagination,
   Spinner,
   Table,
@@ -18,10 +17,11 @@ import {
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useHandleSearch from "../../hooks/useHandleSearch";
 import React, { useEffect, useMemo } from "react";
-import { Actions } from "../../components/Actions/Actions";
 import { backendUrl } from "../../utils/backendUrl.const";
 import useProbePageQuery from "./api/useProbePageQuery";
 import { ProbeType } from "./ProbeType.enum";
+import { DeleteAction } from "../../components/Actions/DeleteAction";
+import { EditAction } from "../../components/Actions/EditAction";
 
 export default function Page() {
   const pathname = usePathname();
@@ -143,10 +143,13 @@ export default function Page() {
                   )}
                 </TableCell>
                 <TableCell>
-                  <Actions
-                    id={item?.id}
-                    url={`${backendUrl}/caloricity/probe`}
-                  />
+                  <div className="flex items-center gap-4 justify-center">
+                    <EditAction id={item?.id} />
+                    <DeleteAction
+                      id={item?.id}
+                      url={`${backendUrl}/caloricity/probe`}
+                    />
+                  </div>
                 </TableCell>
               </TableRow>
             )}

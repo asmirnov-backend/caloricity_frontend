@@ -14,7 +14,7 @@ export default function useSubmit<T extends FieldValues>(input: {
     const res = await input.trigger(params);
     if (res.ok) {
       enqueueSnackbar("Успешно", { variant: "success" });
-      setTimeout(() => replace(input.backTo!), 1000);
+      if (input.backTo) setTimeout(() => replace(input.backTo!), 1000);
     } else {
       enqueueSnackbar("Ошибка", { variant: "error" });
       console.log(await res.json());
