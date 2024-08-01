@@ -164,10 +164,26 @@ export default function Page({ params }: { params: { id: string } }) {
                 Название
               </TableColumn>
               <TableColumn align="center" className="text-base" key="gross">
-                Масса брутто, г
+                Брутто, г
               </TableColumn>
               <TableColumn align="center" className="text-base" key="net">
-                Масса нетто, г
+                Нетто, г
+              </TableColumn>
+              <TableColumn align="center" className="text-base" key="water">
+                Вода, г
+              </TableColumn>
+              <TableColumn align="center" className="text-base" key="proteins">
+                Белки, г
+              </TableColumn>
+              <TableColumn align="center" className="text-base" key="fats">
+                Жиры, г
+              </TableColumn>
+              <TableColumn
+                align="center"
+                className="text-base"
+                key="carbohydrates"
+              >
+                Углеводы, г
               </TableColumn>
               <TableColumn align="center" className="text-base" key="actions">
                 Действия
@@ -180,22 +196,29 @@ export default function Page({ params }: { params: { id: string } }) {
             >
               {(item: any) => (
                 <TableRow key={item?.id}>
-                  {(columnKey) =>
-                    columnKey != "actions" ? (
-                      <TableCell className="text-center">
-                        {getKeyValue(item, columnKey)}
-                      </TableCell>
-                    ) : (
-                      <TableCell>
-                        <div className="flex items-center gap-4 justify-center">
-                          <DeleteAction
-                            id={item?.id}
-                            url={`${backendUrl}/caloricity/ingredient`}
-                          />
-                        </div>
-                      </TableCell>
-                    )
-                  }
+                  <TableCell className="text-center">{item.name}</TableCell>
+                  <TableCell className="text-center">{item.gross}</TableCell>
+                  <TableCell className="text-center">{item.net}</TableCell>
+                  <TableCell className="text-center">
+                    {Number(item.water).toPrecision(2)}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {Number(item.proteins).toPrecision(2)}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {Number(item.fats).toPrecision(2)}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {Number(item.carbohydrates).toPrecision(2)}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-4 justify-center">
+                      <DeleteAction
+                        id={item?.id}
+                        url={`${backendUrl}/caloricity/ingredient`}
+                      />
+                    </div>
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
