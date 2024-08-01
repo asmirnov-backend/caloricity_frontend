@@ -160,11 +160,7 @@ export default function Page({ params }: { params: { id: string } }) {
             }
           >
             <TableHeader>
-              <TableColumn
-                align="center"
-                className="text-base"
-                key="ingredientInCatalogName"
-              >
+              <TableColumn align="center" className="text-base" key="name">
                 Название
               </TableColumn>
               <TableColumn align="center" className="text-base" key="gross">
