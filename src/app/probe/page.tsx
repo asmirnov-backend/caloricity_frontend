@@ -21,6 +21,7 @@ import React, { useEffect, useMemo } from "react";
 import { Actions } from "../../components/Actions/Actions";
 import { backendUrl } from "../../utils/backendUrl.const";
 import useProbePageQuery from "./api/useProbePageQuery";
+import { ProbeType } from "./ProbeType.enum";
 
 export default function Page() {
   const pathname = usePathname();
@@ -133,9 +134,9 @@ export default function Page() {
                 <TableCell className="text-center">{item.code}</TableCell>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">
-                  {item.type === "FIRST" ? (
+                  {item.type === ProbeType.FIRST ? (
                     <Chip className="bg-orange-100">Первое</Chip>
-                  ) : item.type === "SECOND" ? (
+                  ) : ProbeType.SECOND ? (
                     <Chip className="bg-lime-100">Второе</Chip>
                   ) : (
                     <Chip className="bg-blue-100">Третье</Chip>

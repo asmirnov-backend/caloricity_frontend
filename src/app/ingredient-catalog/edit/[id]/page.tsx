@@ -23,7 +23,7 @@ export default function Page({ params }: { params: { id: string } }) {
   });
 
   const { data, isLoading } = useIngredientCatalogQuery(id);
-  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger });
+  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger, backTo: ".." });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;
 

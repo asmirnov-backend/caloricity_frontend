@@ -9,7 +9,6 @@ import useSubmit from "../../../api/useSubmit";
 
 export default function Page() {
   const {
-    reset,
     register,
     handleSubmit,
     formState: { errors: formErrors },
@@ -19,7 +18,7 @@ export default function Page() {
     method: "POST",
   });
 
-  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger, reset });
+  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger, backTo: "." });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

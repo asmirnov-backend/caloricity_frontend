@@ -6,6 +6,7 @@ import Link from "next/link";
 import useSubmit from "../../../api/useSubmit";
 import useProbeMutation from "../api/useProbeMutation";
 import { ProbeForm } from "../interfaces/ProbeForm.interface";
+import { ProbeTypeMap } from "../ProbeType.enum";
 
 export default function Page() {
   const {
@@ -33,12 +34,8 @@ export default function Page() {
           isInvalid={formErrors.type ? true : false}
           errorMessage={formErrors.type?.message?.toString()}
         >
-          {[
-            { key: "FIRST", label: "Первое" },
-            { key: "SECOND", label: "Второе" },
-            { key: "THIRD", label: "Третье" },
-          ].map((e) => (
-            <SelectItem key={e.key}>{e.label}</SelectItem>
+          {Object.entries(ProbeTypeMap).map((e) => (
+            <SelectItem key={e[0]}>{e[1]}</SelectItem>
           ))}
         </Select>
         <Input
@@ -62,6 +59,26 @@ export default function Page() {
           })}
           isInvalid={formErrors.name ? true : false}
           errorMessage={formErrors.name?.message?.toString()}
+        />
+        <Input
+          label="Масса теоритическая, г"
+          variant="bordered"
+          {...register("massTheory", {
+            valueAsNumber: true,
+          })}
+          isInvalid={formErrors.massTheory ? true : false}
+          errorMessage={formErrors.massTheory?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Масса фактическая, г"
+          variant="bordered"
+          {...register("massFact", {
+            required: "Поле обязательно",
+            valueAsNumber: true,
+          })}
+          isInvalid={formErrors.massFact ? true : false}
+          errorMessage={formErrors.massFact?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Создать

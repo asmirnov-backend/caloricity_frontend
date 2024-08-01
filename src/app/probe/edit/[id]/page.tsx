@@ -27,6 +27,7 @@ import { backendUrl } from "../../../../utils/backendUrl.const";
 import { useMemo, useState } from "react";
 import useIngredientPageQuery from "../../api/useIngredientPageQuery";
 import { DeleteAction } from "../../../../components/Actions/DeleteAction";
+import { ProbeTypeMap } from "../../ProbeType.enum";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -56,7 +57,7 @@ export default function Page({ params }: { params: { id: string } }) {
   });
 
   const { data, isLoading } = useProbeQuery(id);
-  const onSubmit = useSubmit<ProbeForm>({ trigger });
+  const onSubmit = useSubmit<ProbeForm>({ trigger, backTo: ".." });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;
 
@@ -64,25 +65,13 @@ export default function Page({ params }: { params: { id: string } }) {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-          <Select
+          <Input
             isRequired
+            isDisabled
             label="Тип"
             variant="bordered"
-            {...register("type", {
-              value: data?.type,
-              required: "Поле обязательно",
-            })}
-            isInvalid={formErrors.type ? true : false}
-            errorMessage={formErrors.type?.message?.toString()}
-          >
-            {[
-              { key: "FIRST", label: "Первое" },
-              { key: "SECOND", label: "Второе" },
-              { key: "THIRD", label: "Третье" },
-            ].map((animal) => (
-              <SelectItem key={animal.key}>{animal.label}</SelectItem>
-            ))}
-          </Select>
+            value={ProbeTypeMap[data?.type!]}
+          ></Input>
           <Input
             label="Код"
             type="string"
@@ -107,7 +96,28 @@ export default function Page({ params }: { params: { id: string } }) {
             isInvalid={formErrors.name ? true : false}
             errorMessage={formErrors.name?.message?.toString()}
           />
-
+          <Input
+            label="Масса теоритическая, г"
+            variant="bordered"
+            {...register("massTheory", {
+              valueAsNumber: true,
+              value: data?.massTheory ?? undefined,
+            })}
+            isInvalid={formErrors.massTheory ? true : false}
+            errorMessage={formErrors.massTheory?.message?.toString()}
+          />
+          <Input
+            isRequired
+            label="Масса фактическая, г"
+            variant="bordered"
+            {...register("massFact", {
+              required: "Поле обязательно",
+              value: data?.massFact,
+              valueAsNumber: true,
+            })}
+            isInvalid={formErrors.massFact ? true : false}
+            errorMessage={formErrors.massFact?.message?.toString()}
+          />
           <Button color="primary" disabled={isMutating} type="submit">
             Сохранить
           </Button>
