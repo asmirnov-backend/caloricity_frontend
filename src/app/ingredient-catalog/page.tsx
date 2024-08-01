@@ -13,43 +13,21 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useMemo } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useMemo } from "react";
 import useIngredientCatalogPageQuery from "./api/useIngredientCatalogPageQuery";
 import { backendUrl } from "../../utils/backendUrl.const";
 import { DeleteAction } from "../../components/Actions/DeleteAction";
 import { EditAction } from "../../components/Actions/EditAction";
 import SearchInput from "../../components/SearchInput/SearchInput";
+import usePaginationInUrl from "../../hooks/usePaginationInUrl";
 
 export default function Page() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const { replace } = useRouter();
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams!);
-    if (!params.has("page")) {
-      params.set("page", "1");
-      replace(`${pathname}?${params.toString()}`);
-    }
-  }, [searchParams, pathname, replace]);
-
-  const [page, setPage] = React.useState(1);
+  const [page, setPageWithUrl] = usePaginationInUrl(replace);
   const rowsPerPage = 13;
-
-  const setPageWithUrl = (pageI: number) => {
-    const params = new URLSearchParams(searchParams!);
-    params.set("page", pageI.toString());
-    replace(`${pathname}?${params.toString()}`);
-    setPage(pageI);
-  };
-
-  useEffect(() => {
-    const pageParam = parseInt(searchParams!.get("page") ?? "1") || 1;
-    if (pageParam !== page) {
-      setPage(pageParam);
-    }
-  }, [searchParams]);
 
   const { data, isLoading } = useIngredientCatalogPageQuery({
     page,
