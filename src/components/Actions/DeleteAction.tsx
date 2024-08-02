@@ -31,9 +31,9 @@ export const DeleteAction = (input: { id: string; url: string }) => {
 
   return (
     <>
-      <Tooltip content="Удалить" color="danger">
+      <Tooltip content="Удалить" className="bg-pink-400">
         <button onClick={onOpen}>
-          <Trash2 fill="#FF0080" />
+          <Trash2 fill="#DB7093" />
         </button>
       </Tooltip>
 

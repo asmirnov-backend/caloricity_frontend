@@ -6,9 +6,9 @@ import Link from "next/link";
 export const EditAction = ({ id }: { id: string }) => {
   const pathname = usePathname();
   return (
-    <Tooltip content="Редактировать" color="warning">
+    <Tooltip content="Редактировать" className="bg-yellow-200">
       <Link href={`${pathname}/edit/${id}`}>
-        <Pencil fill="#979797" />
+        <Pencil fill="#F0E68C" />
       </Link>
     </Tooltip>
   );

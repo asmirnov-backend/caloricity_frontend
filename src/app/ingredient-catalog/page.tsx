@@ -71,7 +71,7 @@ export default function Page() {
                   color="primary"
                   page={page}
                   total={pages}
-                  onChange={(page) => setPageWithUrl(page)}
+                  onChange={setPageWithUrl}
                 />
               </div>
             ) : null

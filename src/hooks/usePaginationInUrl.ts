@@ -16,7 +16,7 @@ export default function usePaginationInUrl(
       params.set("page", "1");
       replace(`${pathname}?${params.toString()}`);
     }
-  }, [searchParams, pathname, replace]);
+  }, [searchParams, pathname]);
 
   const [page, setPage] = useState(1);
 
@@ -25,7 +25,7 @@ export default function usePaginationInUrl(
     if (pageParam !== page) {
       setPage(pageParam);
     }
-  }, [searchParams, page]);
+  }, [searchParams]);
 
   const setPageWithUrl = (pageInput: number) => {
     const params = new URLSearchParams(searchParams!);
