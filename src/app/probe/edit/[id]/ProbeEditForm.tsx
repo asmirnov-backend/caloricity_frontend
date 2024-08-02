@@ -6,8 +6,10 @@ import useProbeMutation from "../../api/useProbeMutation";
 import useProbeQuery from "../../api/useProbeQuery";
 import { ProbeForm } from "../../interfaces/ProbeForm.interface";
 import { ProbeTypeMap } from "../../ProbeType.enum";
+import { useRouter } from "next/navigation";
 
 export default function ProbeEditForm(input: { probeId: string }) {
+  const { back } = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,7 +22,7 @@ export default function ProbeEditForm(input: { probeId: string }) {
   });
 
   const { data, isLoading } = useProbeQuery(input.probeId);
-  const onSubmit = useSubmit<ProbeForm>({ trigger, backTo: ".." });
+  const onSubmit = useSubmit<ProbeForm>({ trigger });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;
 
@@ -87,8 +89,7 @@ export default function ProbeEditForm(input: { probeId: string }) {
           color="danger"
           disabled={isMutating}
           variant="flat"
-          as={Link}
-          href=".."
+          onClick={back}
         >
           Назад
         </Button>

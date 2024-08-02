@@ -6,8 +6,10 @@ import Link from "next/link";
 import { IngredientCatalogForm } from "../interfaces/IngredientCatalogForm.interface";
 import useIngredientCatalogMutation from "../api/useIngredientCatalogMutation";
 import useSubmit from "../../../api/useSubmit";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const { back } = useRouter();
   const {
     register,
     handleSubmit,
@@ -18,7 +20,7 @@ export default function Page() {
     method: "POST",
   });
 
-  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger, backTo: "." });
+  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -97,7 +99,7 @@ export default function Page() {
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
         </Button>
-        <Button color="danger" variant="flat" as={Link} href=".">
+        <Button color="danger" variant="flat" onClick={back}>
           Назад
         </Button>
       </div>

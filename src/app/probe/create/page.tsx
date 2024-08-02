@@ -7,8 +7,10 @@ import useSubmit from "../../../api/useSubmit";
 import useProbeMutation from "../api/useProbeMutation";
 import { ProbeForm } from "../interfaces/ProbeForm.interface";
 import { ProbeTypeMap } from "../ProbeType.enum";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const { back } = useRouter();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ export default function Page() {
     method: "POST",
   });
 
-  const onSubmit = useSubmit<ProbeForm>({ trigger, backTo: "." });
+  const onSubmit = useSubmit<ProbeForm>({ trigger });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +85,7 @@ export default function Page() {
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
         </Button>
-        <Button color="danger" variant="flat" as={Link} href=".">
+        <Button color="danger" variant="flat" onClick={back}>
           Назад
         </Button>
       </div>

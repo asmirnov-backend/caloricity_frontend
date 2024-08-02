@@ -7,9 +7,11 @@ import { IngredientCatalogForm } from "../../interfaces/IngredientCatalogForm.in
 import useIngredientCatalogMutation from "../../api/useIngredientCatalogMutation";
 import useIngredientCatalogQuery from "../../api/useIngredientCatalogQuery";
 import useSubmit from "../../../../api/useSubmit";
+import { useRouter } from "next/navigation";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
+  const { back } = useRouter();
 
   const {
     register,
@@ -23,7 +25,7 @@ export default function Page({ params }: { params: { id: string } }) {
   });
 
   const { data, isLoading } = useIngredientCatalogQuery(id);
-  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger, backTo: ".." });
+  const onSubmit = useSubmit<IngredientCatalogForm>({ trigger });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;
 
@@ -119,8 +121,7 @@ export default function Page({ params }: { params: { id: string } }) {
           color="danger"
           disabled={isMutating}
           variant="flat"
-          as={Link}
-          href=".."
+          onClick={back}
         >
           Назад
         </Button>

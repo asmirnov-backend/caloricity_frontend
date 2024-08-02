@@ -11,13 +11,13 @@ import Link from "next/link";
 import { IngredientForm } from "../interfaces/IngredientForm.interface";
 import useSubmit from "../../../api/useSubmit";
 import useIngredientMutation from "../api/useIngredientMutation";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import useIngredientCatalogPageQuery from "../../ingredient-catalog/api/useIngredientCatalogPageQuery";
 import { useState } from "react";
 
 export default function Page() {
   const searchParams = useSearchParams();
-  const backLink = "/probe/edit/" + searchParams!.get("probe") ?? "/";
+  const { back } = useRouter();
   const {
     register,
     handleSubmit,
@@ -33,7 +33,6 @@ export default function Page() {
 
   const onSubmit = useSubmit<IngredientForm>({
     trigger,
-    backTo: backLink,
   });
 
   const [valueAutocomplete, setValueAutocomplete] = useState<string>();
@@ -105,7 +104,7 @@ export default function Page() {
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
         </Button>
-        <Button color="danger" variant="flat" as={Link} href={backLink}>
+        <Button color="danger" variant="flat" onClick={back}>
           Назад
         </Button>
       </div>
