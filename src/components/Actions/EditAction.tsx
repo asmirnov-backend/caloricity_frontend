@@ -8,7 +8,7 @@ export const EditAction = ({ id }: { id: string }) => {
   return (
     <Tooltip content="Редактировать" className="bg-yellow-200">
       <Link href={`${pathname}/edit/${id}`}>
-        <Pencil fill="#F0E68C" />
+        <Pencil fill="#fef08a" />
       </Link>
     </Tooltip>
   );

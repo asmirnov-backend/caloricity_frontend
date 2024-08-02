@@ -104,7 +104,7 @@ export default function Page() {
                 <TableCell className="text-center">
                   {item.type === ProbeType.FIRST ? (
                     <Chip className="bg-orange-100">Первое</Chip>
-                  ) : ProbeType.SECOND ? (
+                  ) : item.type === ProbeType.SECOND ? (
                     <Chip className="bg-lime-100">Второе</Chip>
                   ) : (
                     <Chip className="bg-blue-100">Третье</Chip>
