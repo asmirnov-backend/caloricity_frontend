@@ -11,7 +11,7 @@ export default function useIngredientCatalogPageQuery(input: {
   const searchWithParamName = `&search=${search}`;
 
   return useSWR(
-    `${backendUrl}/caloricity/ingredient-catalog?page=${input.page - 1}&size=${
+    `${backendUrl}/ingredient-catalog?page=${input.page - 1}&size=${
       input.rowsPerPage
     }&sort=updatedAt,desc${search ? searchWithParamName : ""}`,
     (resource: string, init: any) =>

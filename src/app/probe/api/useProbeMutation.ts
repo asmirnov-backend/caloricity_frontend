@@ -12,7 +12,7 @@ export default function useProbeMutation(
   const add = input.method == "PUT" ? "/" + input.id : "";
 
   return useSWRMutation(
-    `${backendUrl}/caloricity/probe` + add,
+    `${backendUrl}/probe` + add,
     (url: string, { arg }: { arg: ProbeForm }) =>
       fetch(url, {
         method: input.method,

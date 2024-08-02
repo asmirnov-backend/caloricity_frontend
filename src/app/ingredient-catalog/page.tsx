@@ -122,7 +122,7 @@ export default function Page() {
                         <EditAction id={item?.id} />
                         <DeleteAction
                           id={item?.id}
-                          url={`${backendUrl}/caloricity/ingredient-catalog`}
+                          url={`${backendUrl}/ingredient-catalog`}
                         />
                       </div>
                     </TableCell>

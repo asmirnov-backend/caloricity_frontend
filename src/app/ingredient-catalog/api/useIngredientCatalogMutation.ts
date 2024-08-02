@@ -12,7 +12,7 @@ export default function useIngredientCatalogMutation(
   const add = input.method == "PUT" ? "/" + input.id : "";
 
   return useSWRMutation(
-    `${backendUrl}/caloricity/ingredient-catalog` + add,
+    `${backendUrl}/ingredient-catalog` + add,
     (url: string, { arg }: { arg: IngredientCatalogForm }) =>
       fetch(url, {
         method: input.method,

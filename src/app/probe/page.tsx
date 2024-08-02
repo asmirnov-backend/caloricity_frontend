@@ -113,10 +113,7 @@ export default function Page() {
                 <TableCell>
                   <div className="flex items-center gap-4 justify-center">
                     <EditAction id={item?.id} />
-                    <DeleteAction
-                      id={item?.id}
-                      url={`${backendUrl}/caloricity/probe`}
-                    />
+                    <DeleteAction id={item?.id} url={`${backendUrl}/probe`} />
                   </div>
                 </TableCell>
               </TableRow>

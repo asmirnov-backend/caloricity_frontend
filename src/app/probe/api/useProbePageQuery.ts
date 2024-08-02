@@ -11,7 +11,7 @@ export default function useProbePageQuery(input: {
   const searchWithParamName = `&search=${search}`;
 
   return useSWR(
-    `${backendUrl}/caloricity/probe?page=${input.page - 1}&size=${
+    `${backendUrl}/probe?page=${input.page - 1}&size=${
       input.rowsPerPage
     }&sort=updatedAt,desc${search ? searchWithParamName : ""}`,
     (resource: string, init: any) =>

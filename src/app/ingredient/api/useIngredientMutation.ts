@@ -4,7 +4,7 @@ import { backendUrl } from "../../../utils/backendUrl.const";
 
 export default function useIngredientMutation() {
   return useSWRMutation(
-    `${backendUrl}/caloricity/ingredient`,
+    `${backendUrl}/ingredient`,
     (url: string, { arg }: { arg: IngredientForm }) =>
       fetch(url, {
         method: "POST",

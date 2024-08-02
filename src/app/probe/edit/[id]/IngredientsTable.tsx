@@ -124,7 +124,7 @@ export default function IngredientsTable(input: { probeId: string }) {
                   <div className="flex items-center gap-4 justify-center">
                     <DeleteAction
                       id={item?.id}
-                      url={`${backendUrl}/caloricity/ingredient`}
+                      url={`${backendUrl}/ingredient`}
                     />
                   </div>
                 </TableCell>
