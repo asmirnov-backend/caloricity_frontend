@@ -25,7 +25,7 @@ export default function Navbar() {
     >
       <NavbarBrand>
         <Link color={pathname === "/" ? "primary" : "foreground"} href="/">
-          Caloricity <Avatar size="sm" src="/icons8-пончик-glyph-96.png" />
+          Caloricity <Avatar size="sm" src="/ponchikbig.png" />
         </Link>
       </NavbarBrand>
       <NavbarContent justify="center">
