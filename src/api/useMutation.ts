@@ -9,7 +9,7 @@ export default function useMutation<Form>(
       }
     | { method: "PUT"; id: string } = { method: "POST" }
 ) {
-  const add = options.method == "PUT" ? "" + options.id : "";
+  const add = options.method == "PUT" ? "/" + options.id : "";
 
   return useSWRMutation(
     `${backendUrl}${url}` + add,
