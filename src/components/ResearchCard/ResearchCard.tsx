@@ -7,7 +7,7 @@ export default function ResearchCard(input: {
   id: string;
   headerText: string;
   researchUrl: string;
-  data: Array<{ value: number; label: string }>;
+  data: Array<{ value?: number; label: string }>;
 }) {
   return (
     <Card>
@@ -31,7 +31,7 @@ export default function ResearchCard(input: {
               isReadOnly
               label={e.label}
               variant="bordered"
-              value={e.value.toString()}
+              value={e.value?.toString()}
             />
           ))}
         </div>

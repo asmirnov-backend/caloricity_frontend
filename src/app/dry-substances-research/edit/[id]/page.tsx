@@ -93,7 +93,7 @@ export default function Page({ params }: { params: { id: string } }) {
           errorMessage={formErrors.mass?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
-          Создать
+          Сохранить
         </Button>
         <Button color="danger" variant="flat" onClick={back}>
           Назад
