@@ -15,7 +15,7 @@ export default function ProbeEditForm(input: { probeId: string }) {
     formState: { errors: formErrors },
   } = useForm<ProbeForm>();
 
-  const { trigger, isMutating } = useMutation<ProbeForm>("probe", {
+  const { trigger, isMutating } = useMutation<ProbeForm>("/probe", {
     method: "PUT",
     id: input.probeId,
   });
