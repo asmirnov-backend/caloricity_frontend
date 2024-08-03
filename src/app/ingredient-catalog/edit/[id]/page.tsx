@@ -2,12 +2,11 @@
 
 import { Input, Button, CircularProgress } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { IngredientCatalogForm } from "../../interfaces/IngredientCatalogForm.interface";
-import useIngredientCatalogMutation from "../../api/useIngredientCatalogMutation";
-import useIngredientCatalogQuery from "../../api/useIngredientCatalogQuery";
 import useSubmit from "../../../../api/useSubmit";
 import { useRouter } from "next/navigation";
+import useMutation from "../../../../api/useMutation";
+import useQuery from "../../../../api/useQuery";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -19,12 +18,18 @@ export default function Page({ params }: { params: { id: string } }) {
     formState: { errors: formErrors },
   } = useForm<IngredientCatalogForm>();
 
-  const { trigger, isMutating } = useIngredientCatalogMutation({
-    method: "PUT",
-    id,
-  });
+  const { trigger, isMutating } = useMutation<IngredientCatalogForm>(
+    "/ingredient-catalog",
+    {
+      method: "PUT",
+      id,
+    }
+  );
 
-  const { data, isLoading } = useIngredientCatalogQuery(id);
+  const { data, isLoading } = useQuery<IngredientCatalogForm>(
+    id,
+    "/ingredient-catalog"
+  );
   const onSubmit = useSubmit<IngredientCatalogForm>({ trigger });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;

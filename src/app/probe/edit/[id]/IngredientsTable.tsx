@@ -33,12 +33,12 @@ export default function IngredientsTable(input: { probeId: string }) {
   }, [dataIngredient?.totalElements, rowsPerPage]);
 
   return (
-    <div className="my-5 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+    <div className="my-5 px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <div className="flex justify-between w-full flex-wrap md:flex-nowrap gap-4">
-        <div className="flex flex-row gap-3 w-full">
+        <div className="flex flex-row gap-3">
           <h3 className="text-xl font-semibold">Ингредиенты</h3>
         </div>
-        <div className="flex w-1/5 flex-row gap-5 flex-wrap">
+        <div className="flex flex-row gap-5 flex-wrap min-w-[20%]">
           <Button
             className="flex-auto"
             as={Link}

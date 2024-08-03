@@ -1,18 +1,21 @@
 import useSWR from "swr";
 import { useSearchParams } from "next/navigation";
-import { backendUrl } from "../../../utils/backendUrl.const";
+import { backendUrl } from "../utils/backendUrl.const";
 
-export default function useProbePageQuery(input: {
-  page: number;
-  rowsPerPage: number;
-}) {
+export default function usePageQuery(
+  url: string,
+  options: {
+    page: number;
+    rowsPerPage: number;
+  }
+) {
   const searchParams = useSearchParams();
   const search = searchParams?.get("search");
   const searchWithParamName = `&search=${search}`;
 
   return useSWR(
-    `${backendUrl}/probe?page=${input.page - 1}&size=${
-      input.rowsPerPage
+    `${backendUrl}${url}?page=${options.page - 1}&size=${
+      options.rowsPerPage
     }&sort=updatedAt,desc${search ? searchWithParamName : ""}`,
     (resource: string, init: any) =>
       fetch(resource, init).then((res) => res.json()),

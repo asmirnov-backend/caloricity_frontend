@@ -1,12 +1,11 @@
 import { Input, Button, CircularProgress } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import useSubmit from "../../../../api/useSubmit";
-import useProbeMutation from "../../api/useProbeMutation";
-import useProbeQuery from "../../api/useProbeQuery";
 import { ProbeForm } from "../../interfaces/ProbeForm.interface";
 import { ProbeTypeMap } from "../../ProbeType.enum";
 import { useRouter } from "next/navigation";
+import useQuery from "../../../../api/useQuery";
+import useMutation from "../../../../api/useMutation";
 
 export default function ProbeEditForm(input: { probeId: string }) {
   const { back } = useRouter();
@@ -16,12 +15,12 @@ export default function ProbeEditForm(input: { probeId: string }) {
     formState: { errors: formErrors },
   } = useForm<ProbeForm>();
 
-  const { trigger, isMutating } = useProbeMutation({
+  const { trigger, isMutating } = useMutation<ProbeForm>("probe", {
     method: "PUT",
     id: input.probeId,
   });
 
-  const { data, isLoading } = useProbeQuery(input.probeId);
+  const { data, isLoading } = useQuery<ProbeForm>(input.probeId, "/probe");
   const onSubmit = useSubmit<ProbeForm>({ trigger });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;

@@ -2,11 +2,10 @@
 
 import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { IngredientCatalogForm } from "../interfaces/IngredientCatalogForm.interface";
-import useIngredientCatalogMutation from "../api/useIngredientCatalogMutation";
 import useSubmit from "../../../api/useSubmit";
 import { useRouter } from "next/navigation";
+import useMutation from "../../../api/useMutation";
 
 export default function Page() {
   const { back } = useRouter();
@@ -16,9 +15,9 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<IngredientCatalogForm>();
 
-  const { trigger, isMutating } = useIngredientCatalogMutation({
-    method: "POST",
-  });
+  const { trigger, isMutating } = useMutation<IngredientCatalogForm>(
+    "/ingredient-catalog"
+  );
 
   const onSubmit = useSubmit<IngredientCatalogForm>({ trigger });
 

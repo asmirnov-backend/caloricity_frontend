@@ -2,12 +2,11 @@
 
 import { Input, Button, Select, SelectItem } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import useSubmit from "../../../api/useSubmit";
-import useProbeMutation from "../api/useProbeMutation";
 import { ProbeForm } from "../interfaces/ProbeForm.interface";
 import { ProbeTypeMap } from "../ProbeType.enum";
 import { useRouter } from "next/navigation";
+import useMutation from "../../../api/useMutation";
 
 export default function Page() {
   const { back } = useRouter();
@@ -17,9 +16,7 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<ProbeForm>();
 
-  const { trigger, isMutating } = useProbeMutation({
-    method: "POST",
-  });
+  const { trigger, isMutating } = useMutation<ProbeForm>("/probe");
 
   const onSubmit = useSubmit<ProbeForm>({ trigger });
 

@@ -7,13 +7,12 @@ import {
   AutocompleteItem,
 } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { IngredientForm } from "../interfaces/IngredientForm.interface";
 import useSubmit from "../../../api/useSubmit";
-import useIngredientMutation from "../api/useIngredientMutation";
 import { useRouter, useSearchParams } from "next/navigation";
-import useIngredientCatalogPageQuery from "../../ingredient-catalog/api/useIngredientCatalogPageQuery";
 import { useState } from "react";
+import useMutation from "../../../api/useMutation";
+import usePageQuery from "../../../api/usePageQuery";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -24,12 +23,12 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<IngredientForm>();
 
-  const { data, isLoading } = useIngredientCatalogPageQuery({
+  const { data, isLoading } = usePageQuery("/ingredient-catalog", {
     page: 1,
     rowsPerPage: 1000,
   });
 
-  const { trigger, isMutating } = useIngredientMutation();
+  const { trigger, isMutating } = useMutation<IngredientForm>("/ingredient");
 
   const onSubmit = useSubmit<IngredientForm>({
     trigger,
@@ -55,6 +54,7 @@ export default function Page() {
         />
         <Autocomplete
           isRequired
+          isDisabled={isLoading}
           variant="bordered"
           defaultItems={data?.content ?? []}
           label="Ингредиент из католога"

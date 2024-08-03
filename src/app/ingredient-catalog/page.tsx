@@ -15,12 +15,12 @@ import {
 } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useMemo } from "react";
-import useIngredientCatalogPageQuery from "./api/useIngredientCatalogPageQuery";
 import { backendUrl } from "../../utils/backendUrl.const";
 import { DeleteAction } from "../../components/Actions/DeleteAction";
 import { EditAction } from "../../components/Actions/EditAction";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import usePaginationInUrl from "../../hooks/usePaginationInUrl";
+import usePageQuery from "../../api/usePageQuery";
 
 export default function Page() {
   const pathname = usePathname();
@@ -29,7 +29,7 @@ export default function Page() {
   const [page, setPageWithUrl] = usePaginationInUrl(replace);
   const rowsPerPage = 13;
 
-  const { data, isLoading } = useIngredientCatalogPageQuery({
+  const { data, isLoading } = usePageQuery("/ingredient-catalog", {
     page,
     rowsPerPage,
   });
@@ -41,13 +41,13 @@ export default function Page() {
   }, [data?.totalElements, rowsPerPage]);
 
   return (
-    <div className="my-5 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+    <div className="my-5 px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <h3 className="text-xl font-semibold">Католог ингредиентов</h3>
       <div className="flex justify-between w-full flex-wrap md:flex-nowrap gap-4">
-        <div className="flex flex-row gap-3 w-4/5">
+        <div className="flex flex-row gap-3 min-w-[75%]">
           <SearchInput />
         </div>
-        <div className="flex w-1/5 flex-row gap-5 flex-wrap">
+        <div className="flex min-w-[20%] flex-row gap-5 flex-wrap">
           <Button
             className="flex-auto"
             as={Link}
