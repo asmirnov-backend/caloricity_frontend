@@ -1,8 +1,9 @@
 "use client";
 
 import { Divider } from "@nextui-org/react";
-import IngredientsTable from "./IngredientsTable";
+import IngredientsTable from "../../../../components/IngredientsTable/IngredientsTable";
 import ProbeEditForm from "./ProbeEditForm";
+import Researches from "../../../../components/Researches/Researches";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id: probeId } = params;
@@ -13,6 +14,7 @@ export default function Page({ params }: { params: { id: string } }) {
       <Divider />
       <IngredientsTable probeId={probeId} />
       <Divider />
+      <Researches probeId={probeId} />
     </>
   );
 }
