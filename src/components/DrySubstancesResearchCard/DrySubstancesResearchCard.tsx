@@ -32,6 +32,10 @@ export default function DrySubstancesResearchCard(input: { probeId: string }) {
           label: "Масса бюксы вторая параллель, г",
         },
         { value: researchData.bankaEmptyMass, label: "Масса пустой банки, г" },
+        {
+          value: researchData.bankaWithProbeMass,
+          label: "Масса банки с пробой, г",
+        },
         { value: researchData.mass, label: "Масса навески, г" },
       ]}
     />

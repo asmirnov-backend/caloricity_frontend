@@ -80,6 +80,20 @@ export default function Page({ params }: { params: { id: string } }) {
         />
         <Input
           isRequired
+          label="Масса банки c пробой, г"
+          type="number"
+          variant="bordered"
+          {...register("bankaWithProbeMass", {
+            value: data?.bankaWithProbeMass,
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            required: "Поле обязательно",
+            valueAsNumber: true,
+          })}
+          isInvalid={formErrors.bankaWithProbeMass ? true : false}
+          errorMessage={formErrors.bankaWithProbeMass?.message?.toString()}
+        />
+        <Input
+          isRequired
           label="Масса навески, г"
           type="number"
           variant="bordered"
