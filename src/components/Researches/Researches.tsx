@@ -2,6 +2,7 @@ import ResearchCreateDropdown from "../ResearchCreateDropdown/ResearchCreateDrop
 import DrySubstancesResearchCard from "../DrySubstancesResearchCard/DrySubstancesResearchCard";
 import FatsResearchCard from "../FatsResearchCard/FatsResearchCard";
 import CarbohydratesResearchCard from "../CarbohydratesResearchCard/CarbohydratesResearchCard";
+import ProteinsResearchCard from "../ProteinsResearchCard/ProteinsResearchCard";
 
 export default function Researches(input: { probeId: string }) {
   return (
@@ -16,8 +17,9 @@ export default function Researches(input: { probeId: string }) {
       </div>
       <div className="gap-4 mt-5 grid sm:grid-cols-3">
         <DrySubstancesResearchCard probeId={input.probeId} />
-        <FatsResearchCard probeId={input.probeId} />
         <CarbohydratesResearchCard probeId={input.probeId} />
+        <FatsResearchCard probeId={input.probeId} />
+        <ProteinsResearchCard probeId={input.probeId} />
       </div>
     </div>
   );
