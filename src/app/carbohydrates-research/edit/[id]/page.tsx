@@ -66,7 +66,7 @@ export default function Page({ params }: { params: { id: string } }) {
         />
         <Input
           isRequired
-          label="Масса пустой банки, г"
+          label="Масса бюксы с пробой после высушивания первая параллель, г"
           type="number"
           variant="bordered"
           {...register("byuksaAfterDryingParallelFirst", {
@@ -80,7 +80,7 @@ export default function Page({ params }: { params: { id: string } }) {
         />
         <Input
           isRequired
-          label="Масса банки c пробой, г"
+          label="Масса бюксы с пробой после высушивания вторая параллель, г"
           type="number"
           variant="bordered"
           {...register("byuksaAfterDryingParallelSecond", {

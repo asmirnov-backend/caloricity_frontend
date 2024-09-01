@@ -69,42 +69,29 @@ export default function Page() {
         />
         <Input
           isRequired
-          label="Масса пустой банки, г"
+          label="Масса бюксы с пробой после высушивания первая параллель, г"
           type="number"
           variant="bordered"
-          {...register("bankaEmptyMass", {
+          {...register("byuksaAfterDryingParallelFirst", {
             min: { value: 0, message: "Масса не может быть меньше нуля" },
             required: "Поле обязательно",
             valueAsNumber: true,
           })}
-          isInvalid={formErrors.bankaEmptyMass ? true : false}
-          errorMessage={formErrors.bankaEmptyMass?.message?.toString()}
+          isInvalid={formErrors.byuksaAfterDryingParallelFirst ? true : false}
+          errorMessage={formErrors.byuksaAfterDryingParallelFirst?.message?.toString()}
         />
         <Input
           isRequired
-          label="Масса банки c пробой, г"
+          label="Масса бюксы с пробой после высушивания вторая параллель, г"
           type="number"
           variant="bordered"
-          {...register("bankaWithProbeMass", {
+          {...register("byuksaAfterDryingParallelSecond", {
             min: { value: 0, message: "Масса не может быть меньше нуля" },
             required: "Поле обязательно",
             valueAsNumber: true,
           })}
-          isInvalid={formErrors.bankaWithProbeMass ? true : false}
-          errorMessage={formErrors.bankaWithProbeMass?.message?.toString()}
-        />
-        <Input
-          isRequired
-          label="Масса навески, г"
-          type="number"
-          variant="bordered"
-          {...register("mass", {
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
-            valueAsNumber: true,
-          })}
-          isInvalid={formErrors.mass ? true : false}
-          errorMessage={formErrors.mass?.message?.toString()}
+          isInvalid={formErrors.byuksaAfterDryingParallelSecond ? true : false}
+          errorMessage={formErrors.byuksaAfterDryingParallelSecond?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
