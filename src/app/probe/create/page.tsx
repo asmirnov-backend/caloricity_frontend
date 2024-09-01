@@ -60,6 +60,7 @@ export default function Page() {
           errorMessage={formErrors.name?.message?.toString()}
         />
         <Input
+          isRequired
           label="Масса теоритическая, г"
           variant="bordered"
           {...register("massTheory", {
@@ -70,14 +71,27 @@ export default function Page() {
         />
         <Input
           isRequired
-          label="Масса фактическая, г"
+          label="Масса пустой банки, г"
           variant="bordered"
-          {...register("massFact", {
+          {...register("bankaEmptyMass", {
             required: "Поле обязательно",
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
             valueAsNumber: true,
           })}
-          isInvalid={formErrors.massFact ? true : false}
-          errorMessage={formErrors.massFact?.message?.toString()}
+          isInvalid={formErrors.bankaEmptyMass ? true : false}
+          errorMessage={formErrors.bankaEmptyMass?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Масса банки с пробой, г"
+          variant="bordered"
+          {...register("bankaWithProbeMass", {
+            required: "Поле обязательно",
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            valueAsNumber: true,
+          })}
+          isInvalid={formErrors.bankaWithProbeMass ? true : false}
+          errorMessage={formErrors.bankaWithProbeMass?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Создать

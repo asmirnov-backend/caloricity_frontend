@@ -60,26 +60,41 @@ export default function ProbeEditForm(input: { probeId: string }) {
           errorMessage={formErrors.name?.message?.toString()}
         />
         <Input
+          isRequired
           label="Масса теоритическая, г"
           variant="bordered"
           {...register("massTheory", {
             valueAsNumber: true,
-            value: data?.massTheory ?? undefined,
+            value: data?.massTheory,
           })}
           isInvalid={formErrors.massTheory ? true : false}
           errorMessage={formErrors.massTheory?.message?.toString()}
         />
         <Input
           isRequired
-          label="Масса фактическая, г"
+          label="Масса пустой банки, г"
           variant="bordered"
-          {...register("massFact", {
+          {...register("bankaEmptyMass", {
             required: "Поле обязательно",
-            value: data?.massFact,
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            value: data?.bankaEmptyMass,
             valueAsNumber: true,
           })}
-          isInvalid={formErrors.massFact ? true : false}
-          errorMessage={formErrors.massFact?.message?.toString()}
+          isInvalid={formErrors.bankaEmptyMass ? true : false}
+          errorMessage={formErrors.bankaEmptyMass?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Масса банки с пробой, г"
+          variant="bordered"
+          {...register("bankaWithProbeMass", {
+            required: "Поле обязательно",
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            value: data?.bankaWithProbeMass,
+            valueAsNumber: true,
+          })}
+          isInvalid={formErrors.bankaWithProbeMass ? true : false}
+          errorMessage={formErrors.bankaWithProbeMass?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Сохранить

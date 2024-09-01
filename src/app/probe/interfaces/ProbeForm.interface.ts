@@ -5,5 +5,6 @@ export interface ProbeForm {
   type: ProbeType;
   code: string;
   massTheory: number;
-  massFact: number;
+  bankaEmptyMass: number;
+  bankaWithProbeMass: number;
 }
