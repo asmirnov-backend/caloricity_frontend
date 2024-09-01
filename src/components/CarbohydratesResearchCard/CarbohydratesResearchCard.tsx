@@ -31,12 +31,14 @@ export default function CarbohydratesResearchCard(input: { probeId: string }) {
           value: researchData.byuksaParallelSecond,
           label: "Масса бюксы вторая параллель, г",
         },
-        { value: researchData.bankaEmptyMass, label: "Масса пустой банки, г" },
         {
-          value: researchData.bankaWithProbeMass,
-          label: "Масса банки с пробой, г",
+          value: researchData.byuksaAfterDryingParallelFirst,
+          label: "Масса бюксы с пробой после высушивания первая параллель, г",
         },
-        { value: researchData.mass, label: "Масса навески, г" },
+        {
+          value: researchData.byuksaAfterDryingParallelSecond,
+          label: "Масса бюксы с пробой после высушивания вторая параллель, г",
+        },
       ]}
     />
   );

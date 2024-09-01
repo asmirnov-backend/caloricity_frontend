@@ -1,8 +1,7 @@
 export interface CarbohydratesResearchForm {
   byuksaParallelFirst: number;
   byuksaParallelSecond: number;
-  bankaEmptyMass: number;
-  bankaWithProbeMass: number;
-  mass: number;
+  byuksaAfterDryingParallelFirst: number;
+  byuksaAfterDryingParallelSecond: number;
   probeId: string;
 }
