@@ -24,12 +24,20 @@ export default function FatsResearchCard(input: { probeId: string }) {
       researchUrl={researchUrl}
       data={[
         {
-          value: researchData.patronMassBeforeExtraction,
-          label: "Масса патрона до экстракции, г",
+          value: researchData.patronMassBeforeExtractionParallelFirst,
+          label: "Масса патрона до экстракции первая параллель, г",
         },
         {
-          value: researchData.patronMassAfterExtraction,
-          label: "Масса патрона после экстракции, г",
+          value: researchData.patronMassBeforeExtractionParallelSecond,
+          label: "Масса патрона до экстракции вторая параллель, г",
+        },
+        {
+          value: researchData.patronMassAfterExtractionParallelFirst,
+          label: "Масса патрона после экстракции первая параллель, г",
+        },
+        {
+          value: researchData.patronMassAfterExtractionParallelSecond,
+          label: "Масса патрона после экстракции вторая параллель, г",
         },
       ]}
     />

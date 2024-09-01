@@ -1,5 +1,7 @@
 export interface FatsResearchForm {
-  patronMassBeforeExtraction: number;
-  patronMassAfterExtraction: number;
+  patronMassBeforeExtractionParallelFirst: number;
+  patronMassBeforeExtractionParallelSecond: number;
+  patronMassAfterExtractionParallelFirst: number;
+  patronMassAfterExtractionParallelSecond: number;
   probeId: string;
 }
