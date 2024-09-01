@@ -38,31 +38,31 @@ export default function Page({ params }: { params: { id: string } }) {
       <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
         <Input
           isRequired
-          label="Объём титранта, г/см^3"
+          label="Объём титранта первая параллель, г/см^3"
           type="number"
           variant="bordered"
-          {...register("titrantVolume", {
-            value: data?.titrantVolume,
+          {...register("titrantVolumeParallelFirst", {
+            value: data?.titrantVolumeParallelFirst,
             required: "Поле обязательно",
             min: { value: 0, message: "Масса не может быть меньше нуля" },
             valueAsNumber: true,
           })}
-          isInvalid={formErrors.titrantVolume ? true : false}
-          errorMessage={formErrors.titrantVolume?.message?.toString()}
+          isInvalid={formErrors.titrantVolumeParallelFirst ? true : false}
+          errorMessage={formErrors.titrantVolumeParallelFirst?.message?.toString()}
         />
         <Input
           isRequired
-          label="Масса навески, г"
+          label="Объём титранта вторая параллель, г/см^3"
           type="number"
           variant="bordered"
-          {...register("mass", {
-            value: data?.mass,
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
+          {...register("titrantVolumeParallelSecond", {
+            value: data?.titrantVolumeParallelSecond,
             required: "Поле обязательно",
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
             valueAsNumber: true,
           })}
-          isInvalid={formErrors.mass ? true : false}
-          errorMessage={formErrors.mass?.message?.toString()}
+          isInvalid={formErrors.titrantVolumeParallelSecond ? true : false}
+          errorMessage={formErrors.titrantVolumeParallelSecond?.message?.toString()}
         />
         <Input
           isRequired

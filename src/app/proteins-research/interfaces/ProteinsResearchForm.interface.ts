@@ -1,6 +1,6 @@
 export interface ProteinsResearchForm {
-  titrantVolume: number;
-  mass: number;
+  titrantVolumeParallelFirst: number;
+  titrantVolumeParallelSecond: number;
   controlVolume: number;
   coefficient: number;
   probeId: string;

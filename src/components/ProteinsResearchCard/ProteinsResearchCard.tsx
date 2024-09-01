@@ -24,12 +24,12 @@ export default function ProteinsResearchCard(input: { probeId: string }) {
       researchUrl={researchUrl}
       data={[
         {
-          value: researchData.titrantVolume,
-          label: "Объём титранта, г/см^3",
+          value: researchData.titrantVolumeParallelFirst,
+          label: "Объём титранта первая параллель, г/см^3",
         },
         {
-          value: researchData.mass,
-          label: "Масса навески, г",
+          value: researchData.titrantVolumeParallelSecond,
+          label: "Объём титранта вторая параллель, г/см^3",
         },
         { value: researchData.controlVolume, label: "Объём контроля, г/см^3" },
         {
