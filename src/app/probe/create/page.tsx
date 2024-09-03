@@ -16,7 +16,7 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<ProbeForm>();
 
-  const { trigger, isMutating } = useMutation<ProbeForm>("/probe");
+  const { trigger, isMutating } = useMutation<ProbeForm>("/probes");
 
   const onSubmit = useSubmit<ProbeForm>({ trigger });
 

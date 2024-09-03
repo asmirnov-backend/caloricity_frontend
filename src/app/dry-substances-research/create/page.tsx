@@ -18,7 +18,7 @@ export default function Page() {
   } = useForm<DrySubstanceResearchForm>();
 
   const { trigger, isMutating } = useMutation<DrySubstanceResearchForm>(
-    "/dry-substances-research"
+    "/dry-substances-researches"
   );
 
   const onSubmit = useSubmit<DrySubstanceResearchForm>({

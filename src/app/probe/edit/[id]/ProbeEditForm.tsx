@@ -15,12 +15,12 @@ export default function ProbeEditForm(input: { probeId: string }) {
     formState: { errors: formErrors },
   } = useForm<ProbeForm>();
 
-  const { trigger, isMutating } = useMutation<ProbeForm>("/probe", {
+  const { trigger, isMutating } = useMutation<ProbeForm>("/probes", {
     method: "PUT",
     id: input.probeId,
   });
 
-  const { data, isLoading } = useQuery<ProbeForm>(input.probeId, "/probe");
+  const { data, isLoading } = useQuery<ProbeForm>(input.probeId, "/probes");
   const onSubmit = useSubmit<ProbeForm>({ trigger });
 
   if (isLoading) return <CircularProgress aria-label="Loading..." />;

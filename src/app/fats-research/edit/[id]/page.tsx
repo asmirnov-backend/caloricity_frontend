@@ -19,11 +19,11 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const { data, isLoading } = useQuery<FatsResearchForm>(
     params.id,
-    "/fats-research"
+    "/fats-researches"
   );
 
   const { trigger, isMutating } = useMutation<FatsResearchForm>(
-    "/fats-research",
+    "/fats-researches",
     { method: "PUT", id: params.id }
   );
 

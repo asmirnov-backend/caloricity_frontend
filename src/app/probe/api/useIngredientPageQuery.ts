@@ -7,7 +7,7 @@ export default function useIngredientPageQuery(input: {
   probeId: string;
 }) {
   return useSWR(
-    `${backendUrl}/ingredient?page=${input.page - 1}&size=${
+    `${backendUrl}/ingredients?page=${input.page - 1}&size=${
       input.rowsPerPage
     }&sort=updatedAt,desc&probe-id=${input.probeId}`,
     (resource: string, init: any) =>

@@ -2,7 +2,7 @@ import { CircularProgress } from "@nextui-org/react";
 import ResearchCard from "../ResearchCard/ResearchCard";
 import usePageQuery from "../../api/usePageQuery";
 
-const researchUrl = "/fats-research";
+const researchUrl = "/fats-researches";
 
 export default function FatsResearchCard(input: { probeId: string }) {
   const { data, isLoading } = usePageQuery(researchUrl, {

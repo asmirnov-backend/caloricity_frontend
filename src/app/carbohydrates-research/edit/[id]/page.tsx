@@ -19,11 +19,11 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const { data, isLoading } = useQuery<CarbohydratesResearchForm>(
     params.id,
-    "/carbohydrates-research"
+    "/carbohydrates-researches"
   );
 
   const { trigger, isMutating } = useMutation<CarbohydratesResearchForm>(
-    "/carbohydrates-research",
+    "/carbohydrates-researches",
     { method: "PUT", id: params.id }
   );
 

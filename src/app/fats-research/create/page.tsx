@@ -18,7 +18,7 @@ export default function Page() {
   } = useForm<FatsResearchForm>();
 
   const { trigger, isMutating } =
-    useMutation<FatsResearchForm>("/fats-research");
+    useMutation<FatsResearchForm>("/fats-researches");
 
   const onSubmit = useSubmit<FatsResearchForm>({
     trigger,

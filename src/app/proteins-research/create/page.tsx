@@ -17,8 +17,9 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<ProteinsResearchForm>();
 
-  const { trigger, isMutating } =
-    useMutation<ProteinsResearchForm>("/proteins-research");
+  const { trigger, isMutating } = useMutation<ProteinsResearchForm>(
+    "/proteins-researches"
+  );
 
   const onSubmit = useSubmit<ProteinsResearchForm>({
     trigger,

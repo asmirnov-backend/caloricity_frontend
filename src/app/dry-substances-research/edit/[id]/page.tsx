@@ -19,11 +19,11 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const { data, isLoading } = useQuery<DrySubstanceResearchForm>(
     params.id,
-    "/dry-substances-research"
+    "/dry-substances-researches"
   );
 
   const { trigger, isMutating } = useMutation<DrySubstanceResearchForm>(
-    "/dry-substances-research",
+    "/dry-substances-researches",
     { method: "PUT", id: params.id }
   );
 

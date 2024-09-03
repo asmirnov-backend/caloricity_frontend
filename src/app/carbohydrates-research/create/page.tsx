@@ -18,7 +18,7 @@ export default function Page() {
   } = useForm<CarbohydratesResearchForm>();
 
   const { trigger, isMutating } = useMutation<CarbohydratesResearchForm>(
-    "/carbohydrates-research"
+    "/carbohydrates-researches"
   );
 
   const onSubmit = useSubmit<CarbohydratesResearchForm>({

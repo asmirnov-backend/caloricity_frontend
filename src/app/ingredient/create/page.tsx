@@ -28,7 +28,7 @@ export default function Page() {
     rowsPerPage: 1000,
   });
 
-  const { trigger, isMutating } = useMutation<IngredientForm>("/ingredient");
+  const { trigger, isMutating } = useMutation<IngredientForm>("/ingredients");
 
   const onSubmit = useSubmit<IngredientForm>({
     trigger,
