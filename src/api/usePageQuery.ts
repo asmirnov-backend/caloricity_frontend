@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { backendUrl } from "../utils/backendUrl.const";
 import { PageOutput } from "./interfaces/PageOutput.interface";
 
+// TODO Add Generic type
 export default function usePageQuery(
   url: string,
   options: {

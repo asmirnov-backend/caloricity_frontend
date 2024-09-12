@@ -31,12 +31,8 @@ export default function Navbar() {
       <NavbarContent justify="center">
         <NavbarItem>
           <Link
-            color={
-              pathname?.includes("ingredient-catalog")
-                ? "primary"
-                : "foreground"
-            }
-            href="/ingredient-catalog"
+            color={pathname?.includes("ingredient") ? "primary" : "foreground"}
+            href="/ingredient"
           >
             Католог ингредиентов
           </Link>
