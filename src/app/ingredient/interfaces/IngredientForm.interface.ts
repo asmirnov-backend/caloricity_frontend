@@ -1,6 +1,8 @@
 export interface IngredientForm {
-  gross: number;
-  net: number;
-  ingredientInCatalogId: string;
-  probeId: string;
+  name: string;
+  ediblePart: number;
+  water: number;
+  proteins: number;
+  fats: number;
+  carbohydrates: number;
 }

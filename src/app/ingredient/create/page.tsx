@@ -1,21 +1,13 @@
 "use client";
 
-import {
-  Input,
-  Button,
-  Autocomplete,
-  AutocompleteItem,
-} from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { IngredientForm } from "../interfaces/IngredientForm.interface";
 import useSubmit from "../../../api/useSubmit";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import useMutation from "../../../api/useMutation";
-import usePageQuery from "../../../api/usePageQuery";
 
 export default function Page() {
-  const searchParams = useSearchParams();
   const { back } = useRouter();
   const {
     register,
@@ -23,84 +15,84 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<IngredientForm>();
 
-  const { data, isLoading } = usePageQuery("/ingredient-catalog", {
-    page: 1,
-    rowsPerPage: 1000,
-  });
-
   const { trigger, isMutating } = useMutation<IngredientForm>("/ingredients");
 
-  const onSubmit = useSubmit<IngredientForm>({
-    trigger,
-  });
-
-  const [valueAutocomplete, setValueAutocomplete] = useState<string>();
+  const onSubmit = useSubmit<IngredientForm>({ trigger });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
         <Input
           isRequired
-          readOnly
-          isDisabled
-          label="Идентификатор пробы"
+          label="Название"
           variant="bordered"
-          {...register("probeId", {
+          {...register("name", {
             required: "Поле обязательно",
-            value: searchParams!.get("probe") ?? undefined,
+            minLength: { value: 2, message: "Слишком короткое название" },
           })}
-          isInvalid={formErrors.probeId ? true : false}
-          errorMessage={formErrors.probeId?.message?.toString()}
-        />
-        <Autocomplete
-          isRequired
-          isDisabled={isLoading}
-          variant="bordered"
-          defaultItems={data?.content ?? []}
-          label="Ингредиент из католога"
-          selectedKey={valueAutocomplete}
-          onSelectionChange={(e) =>
-            setValueAutocomplete(e?.toString() ?? undefined)
-          }
-          {...register("ingredientInCatalogId", {
-            required: "Поле обязательно",
-            value: valueAutocomplete ?? undefined,
-            setValueAs: (_) => valueAutocomplete,
-          })}
-          isInvalid={formErrors.ingredientInCatalogId ? true : false}
-          errorMessage={formErrors.ingredientInCatalogId?.message?.toString()}
-        >
-          {(e: any) => (
-            <AutocompleteItem key={e.value}>{e.name}</AutocompleteItem>
-          )}
-        </Autocomplete>
-        <Input
-          isRequired
-          label="Масса брутто, г"
-          type="number"
-          variant="bordered"
-          {...register("gross", {
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          isInvalid={formErrors.gross ? true : false}
-          errorMessage={formErrors.gross?.message?.toString()}
+          isInvalid={formErrors.name ? true : false}
+          errorMessage={formErrors.name?.message?.toString()}
         />
         <Input
           isRequired
-          label="Масса нетто, г"
+          label="Съедобная часть, г"
           type="number"
           variant="bordered"
-          {...register("net", {
+          {...register("ediblePart", {
             min: { value: 0, message: "Масса не может быть меньше нуля" },
             required: "Поле обязательно",
-            valueAsNumber: true,
           })}
-          isInvalid={formErrors.net ? true : false}
-          errorMessage={formErrors.net?.message?.toString()}
+          isInvalid={formErrors.ediblePart ? true : false}
+          errorMessage={formErrors.ediblePart?.message?.toString()}
         />
-
+        <Input
+          isRequired
+          label="Вода, г"
+          type="number"
+          variant="bordered"
+          {...register("water", {
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            required: "Поле обязательно",
+          })}
+          isInvalid={formErrors.water ? true : false}
+          errorMessage={formErrors.water?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Белки, г"
+          type="number"
+          variant="bordered"
+          {...register("proteins", {
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            required: "Поле обязательно",
+          })}
+          isInvalid={formErrors.proteins ? true : false}
+          errorMessage={formErrors.proteins?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Жиры, г"
+          type="number"
+          variant="bordered"
+          {...register("fats", {
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            required: "Поле обязательно",
+          })}
+          isInvalid={formErrors.fats ? true : false}
+          errorMessage={formErrors.fats?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Углеводы, г"
+          type="number"
+          variant="bordered"
+          {...register("carbohydrates", {
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            required: "Поле обязательно",
+          })}
+          isInvalid={formErrors.carbohydrates ? true : false}
+          errorMessage={formErrors.carbohydrates?.message?.toString()}
+        />
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
         </Button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Divider } from "@nextui-org/react";
-import IngredientsTable from "../../../../components/IngredientsTable/IngredientsTable";
+import ProbeIngredientsTable from "../../../../components/ProbeIngredientsTable/ProbeIngredientsTable";
 import ProbeEditForm from "./ProbeEditForm";
 import Researches from "../../../../components/Researches/Researches";
 
@@ -12,7 +12,7 @@ export default function Page({ params }: { params: { id: string } }) {
     <>
       <ProbeEditForm probeId={probeId} />
       <Divider />
-      <IngredientsTable probeId={probeId} />
+      <ProbeIngredientsTable probeId={probeId} />
       <Divider />
       <Researches probeId={probeId} />
     </>

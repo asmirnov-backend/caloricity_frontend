@@ -29,7 +29,7 @@ export default function Page() {
   const [page, setPageWithUrl] = usePaginationInUrl(replace);
   const rowsPerPage = 13;
 
-  const { data, isLoading } = usePageQuery("/ingredient-catalog", {
+  const { data, isLoading } = usePageQuery("/ingredients", {
     page,
     rowsPerPage,
   });

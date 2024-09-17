@@ -12,25 +12,24 @@ import {
 import { backendUrl } from "../../utils/backendUrl.const";
 import { DeleteAction } from "../Actions/DeleteAction";
 import { useMemo, useState } from "react";
-import useIngredientPageQuery from "../../app/probe/api/useIngredientPageQuery";
 import Link from "next/link";
+import usePageQuery from "../../api/usePageQuery";
 
-export default function IngredientsTable(input: { probeId: string }) {
+export default function ProbeIngredientsTable(input: { probeId: string }) {
   const [page, setPage] = useState(1);
   const rowsPerPage = 13;
 
-  const { data: dataIngredient, isLoading: isLoadingIngredient } =
-    useIngredientPageQuery({
+  const { data: probeIngredients, isLoading: isLoadingIngredient } =
+    usePageQuery("/probe-ingredient", {
       page,
       rowsPerPage,
-      probeId: input.probeId,
     });
 
   const pages = useMemo(() => {
-    return dataIngredient?.totalElements
-      ? Math.ceil(dataIngredient.totalElements / rowsPerPage)
+    return probeIngredients?.totalElements
+      ? Math.ceil(probeIngredients.totalElements / rowsPerPage)
       : 0;
-  }, [dataIngredient?.totalElements, rowsPerPage]);
+  }, [probeIngredients?.totalElements, rowsPerPage]);
 
   return (
     <div className="my-5 px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
@@ -42,7 +41,7 @@ export default function IngredientsTable(input: { probeId: string }) {
           <Button
             className="flex-auto"
             as={Link}
-            href={`/ingredient/create?probe=${input.probeId}`}
+            href={`/probe-ingredient/create?probe=${input.probeId}`}
             color="primary"
           >
             Добавить
@@ -69,7 +68,11 @@ export default function IngredientsTable(input: { probeId: string }) {
           }
         >
           <TableHeader>
-            <TableColumn align="center" className="text-base" key="name">
+            <TableColumn
+              align="center"
+              className="text-base"
+              key="ingredientName"
+            >
               Название
             </TableColumn>
             <TableColumn align="center" className="text-base" key="gross">
@@ -99,13 +102,15 @@ export default function IngredientsTable(input: { probeId: string }) {
             </TableColumn>
           </TableHeader>
           <TableBody
-            items={dataIngredient?.content ?? []}
+            items={probeIngredients?.content ?? []}
             loadingContent={<Spinner />}
             loadingState={isLoadingIngredient ? "loading" : "idle"}
           >
             {(item: any) => (
               <TableRow key={item?.id}>
-                <TableCell className="text-center">{item.name}</TableCell>
+                <TableCell className="text-center">
+                  {item.ingredientName}
+                </TableCell>
                 <TableCell className="text-center">{item.gross}</TableCell>
                 <TableCell className="text-center">{item.net}</TableCell>
                 <TableCell className="text-center">
@@ -124,7 +129,7 @@ export default function IngredientsTable(input: { probeId: string }) {
                   <div className="flex items-center gap-4 justify-center">
                     <DeleteAction
                       id={item?.id}
-                      url={`${backendUrl}/ingredient`}
+                      url={`${backendUrl}/probe-ingredient`}
                     />
                   </div>
                 </TableCell>
