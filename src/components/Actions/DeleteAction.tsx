@@ -24,8 +24,10 @@ export const DeleteAction = (input: { id: string; url: string }) => {
       enqueueSnackbar("Успешно удалено", { variant: "success" });
       setTimeout(() => location.reload(), 2500);
     } else {
-      enqueueSnackbar("Ошибка", { variant: "error" });
-      console.log(await res.json());
+      const json = await res.json();
+      const errorText = "title" in json ? json.title : "Ошибка";
+      enqueueSnackbar(errorText, { variant: "error" });
+      console.error(json?.detail ?? json);
     }
   };
 
