@@ -45,14 +45,14 @@ export default function Page({ params }: { params: { id: string } }) {
         />
         <Input
           isRequired
-          label="Съедобная часть, г"
+          label="Съедобная часть, доля"
           type="number"
           variant="bordered"
           {...register("ediblePart", {
             valueAsNumber: true,
             value: data?.ediblePart,
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
+            min: { value: 0, message: "Доля не может быть меньше нуля" },
+            max: { value: 1, message: "Доля не может быть больше единицы" },
           })}
           isInvalid={formErrors.ediblePart ? true : false}
           errorMessage={formErrors.ediblePart?.message?.toString()}

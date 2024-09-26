@@ -82,7 +82,7 @@ export default function Page() {
               Название
             </TableColumn>
             <TableColumn align="center" className="text-base" key="ediblePart">
-              Съедобная часть, г
+              Съедобная часть, доля
             </TableColumn>
             <TableColumn align="center" className="text-base" key="water">
               Вода, г

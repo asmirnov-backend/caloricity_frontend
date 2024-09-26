@@ -81,8 +81,12 @@ export default function ProbeIngredientsTable(input: { probeId: string }) {
             <TableColumn align="center" className="text-base" key="net">
               Нетто, г
             </TableColumn>
-            <TableColumn align="center" className="text-base" key="water">
-              Вода, г
+            <TableColumn
+              align="center"
+              className="text-base"
+              key="drySubstances"
+            >
+              Сухие вещества, г
             </TableColumn>
             <TableColumn align="center" className="text-base" key="proteins">
               Белки, г
@@ -114,7 +118,7 @@ export default function ProbeIngredientsTable(input: { probeId: string }) {
                 <TableCell className="text-center">{item.gross}</TableCell>
                 <TableCell className="text-center">{item.net}</TableCell>
                 <TableCell className="text-center">
-                  {Number(item.water).toPrecision(3)}
+                  {Number(item.drySubstances).toPrecision(3)}
                 </TableCell>
                 <TableCell className="text-center">
                   {Number(item.proteins).toPrecision(3)}

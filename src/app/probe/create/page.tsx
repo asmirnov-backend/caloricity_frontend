@@ -71,18 +71,6 @@ export default function Page() {
         />
         <Input
           isRequired
-          label="Масса пустой банки, г"
-          variant="bordered"
-          {...register("bankaEmptyMass", {
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          isInvalid={formErrors.bankaEmptyMass ? true : false}
-          errorMessage={formErrors.bankaEmptyMass?.message?.toString()}
-        />
-        <Input
-          isRequired
           label="Масса банки с пробой, г"
           variant="bordered"
           {...register("bankaWithProbeMass", {
@@ -92,6 +80,18 @@ export default function Page() {
           })}
           isInvalid={formErrors.bankaWithProbeMass ? true : false}
           errorMessage={formErrors.bankaWithProbeMass?.message?.toString()}
+        />
+        <Input
+          isRequired
+          label="Масса пустой банки, г"
+          variant="bordered"
+          {...register("bankaEmptyMass", {
+            required: "Поле обязательно",
+            min: { value: 0, message: "Масса не может быть меньше нуля" },
+            valueAsNumber: true,
+          })}
+          isInvalid={formErrors.bankaEmptyMass ? true : false}
+          errorMessage={formErrors.bankaEmptyMass?.message?.toString()}
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Создать
