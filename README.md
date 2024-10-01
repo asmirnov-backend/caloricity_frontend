@@ -1,3 +1,1 @@
-# Caloricity
-
-![](./view.png)
+# Caloricity frontend
