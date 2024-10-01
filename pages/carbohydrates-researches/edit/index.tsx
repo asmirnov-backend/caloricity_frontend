@@ -3,6 +3,7 @@
 import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 import useMutation from "../../../api/useMutation";
 import useSubmit from "../../../api/useSubmit";
@@ -18,8 +19,8 @@ export default function Page() {
     formState: { errors: formErrors },
   } = useForm<CarbohydratesResearchForm>();
 
-  const router = useRouter();
-  const { id } = router.query as { id: string };
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") ?? null;
 
   const { data, isLoading } = useQuery<CarbohydratesResearchForm>(
     id,

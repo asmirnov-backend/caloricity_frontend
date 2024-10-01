@@ -2,17 +2,20 @@
 
 import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
-import { IngredientForm } from "../../../../interfaces/IngredientForm.interface";
-import useSubmit from "../../../../api/useSubmit";
-import useMutation from "../../../../api/useMutation";
-import useQuery from "../../../../api/useQuery";
-import CustomLoader from "../../../../components/CustomLoader/CustomLoader";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import { IngredientForm } from "../../../interfaces/IngredientForm.interface";
+import useSubmit from "../../../api/useSubmit";
+import useMutation from "../../../api/useMutation";
+import useQuery from "../../../api/useQuery";
+import CustomLoader from "../../../components/CustomLoader/CustomLoader";
 
 export default function Page() {
-  const { back, query } = useRouter();
-  const { id } = query as { id: string };
+  const { back } = useRouter();
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") ?? null;
 
   const {
     register,

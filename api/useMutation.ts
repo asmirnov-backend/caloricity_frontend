@@ -8,12 +8,19 @@ export default function useMutation<Form>(
     | {
         method: "POST";
       }
-    | { method: "PUT"; id: string } = { method: "POST" },
+    | { method: "PUT"; id: string | null } = { method: "POST" },
 ) {
   const add = options.method == "PUT" ? "/" + options.id : "";
+  let urlForRequest: string | null;
+
+  if (options.method == "PUT" && options.id === null) {
+    urlForRequest = null;
+  } else {
+    urlForRequest = `${backendUrl}${url}` + add;
+  }
 
   return useSWRMutation(
-    `${backendUrl}${url}` + add,
+    urlForRequest,
     (urlForFetch: string, { arg }: { arg: Form }) =>
       fetch(urlForFetch, {
         method: options.method,

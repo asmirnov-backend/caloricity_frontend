@@ -1,7 +1,7 @@
 "use client";
 
 import { Divider } from "@nextui-org/react";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 import ProbeIngredientsTable from "../../../components/ProbeIngredientsTable/ProbeIngredientsTable";
 import Researches from "../../../components/Researches/Researches";
@@ -10,18 +10,19 @@ import CustomLoader from "../../../components/CustomLoader/CustomLoader";
 import ProbeEditForm from "./ProbeEditForm";
 
 export default function Page() {
-  const router = useRouter();
-  const { id: probeId } = router.query;
+  const searchParams = useSearchParams();
 
-  if (!probeId || Array.isArray(probeId)) return <CustomLoader />;
+  if (!searchParams || !searchParams.has("id")) return <CustomLoader />;
+
+  const id = searchParams.get("id")!;
 
   return (
     <>
-      <ProbeEditForm probeId={probeId} />
+      <ProbeEditForm probeId={id} />
       <Divider />
-      <ProbeIngredientsTable probeId={probeId} />
+      <ProbeIngredientsTable probeId={id} />
       <Divider />
-      <Researches probeId={probeId} />
+      <Researches probeId={id} />
     </>
   );
 }

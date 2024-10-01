@@ -15,7 +15,7 @@ export default function DrySubstancesResearchCard(input: { probeId: string }) {
 
   const researchData = data?.content[0];
 
-  if (!researchData) return <CustomLoader />;
+  if (!researchData) return <></>;
 
   return (
     <ResearchCard

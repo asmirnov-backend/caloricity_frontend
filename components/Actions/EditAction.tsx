@@ -9,7 +9,7 @@ export const EditAction = ({ id, url }: { id: string; url?: string }) => {
 
   return (
     <Tooltip className="bg-yellow-200" content="Редактировать">
-      <Link href={`${href}/edit/${id}`}>
+      <Link href={`${href}/edit?id=${id}`}>
         <Pencil fill="#fef08a" />
       </Link>
     </Tooltip>
