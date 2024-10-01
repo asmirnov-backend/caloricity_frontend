@@ -20,8 +20,7 @@ import { EditAction } from "../../components/Actions/EditAction";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import usePaginationInUrl from "../../hooks/usePaginationInUrl";
 import usePageQuery from "../../api/usePageQuery";
-
-import { ProbeType } from "./ProbeType.enum";
+import { ProbeType } from "../../interfaces/ProbeType.enum";
 
 export default function Page() {
   const pathname = usePathname();

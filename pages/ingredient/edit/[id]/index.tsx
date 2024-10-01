@@ -1,13 +1,14 @@
 "use client";
 
-import { Input, Button, CircularProgress } from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
-import { IngredientForm } from "../../interfaces/IngredientForm.interface";
+import { IngredientForm } from "../../../../interfaces/IngredientForm.interface";
 import useSubmit from "../../../../api/useSubmit";
 import useMutation from "../../../../api/useMutation";
 import useQuery from "../../../../api/useQuery";
+import CustomLoader from "../../../../components/CustomLoader/CustomLoader";
 
 export default function Page() {
   const { back, query } = useRouter();
@@ -27,7 +28,7 @@ export default function Page() {
   const { data, isLoading } = useQuery<IngredientForm>(id, "/ingredients");
   const onSubmit = useSubmit<IngredientForm>({ trigger });
 
-  if (isLoading) return <CircularProgress aria-label="Loading..." />;
+  if (isLoading) return <CustomLoader />;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

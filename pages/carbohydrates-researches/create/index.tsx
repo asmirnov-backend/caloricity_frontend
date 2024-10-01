@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import useSubmit from "../../../api/useSubmit";
-import { CarbohydratesResearchForm } from "../interfaces/CarbohydratesResearchForm.interface";
+import { CarbohydratesResearchForm } from "../../../interfaces/CarbohydratesResearchForm.interface";
 import useMutation from "../../../api/useMutation";
 
 export default function Page() {

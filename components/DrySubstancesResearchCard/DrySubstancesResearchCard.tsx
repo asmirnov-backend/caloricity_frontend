@@ -1,7 +1,6 @@
-import { CircularProgress } from "@nextui-org/react";
-
 import ResearchCard from "../ResearchCard/ResearchCard";
 import usePageQuery from "../../api/usePageQuery";
+import CustomLoader from "../CustomLoader/CustomLoader";
 
 const researchUrl = "/dry-substances-researches";
 
@@ -12,11 +11,11 @@ export default function DrySubstancesResearchCard(input: { probeId: string }) {
     queryParams: { "probe-id": input.probeId },
   });
 
-  if (isLoading) return <CircularProgress aria-label="Loading..." />;
+  if (isLoading) return <CustomLoader />;
 
   const researchData = data?.content[0];
 
-  if (!researchData) return <></>;
+  if (!researchData) return <CustomLoader />;
 
   return (
     <ResearchCard

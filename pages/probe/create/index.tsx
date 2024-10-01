@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import useSubmit from "../../../api/useSubmit";
-import { ProbeForm } from "../interfaces/ProbeForm.interface";
-import { ProbeTypeMap } from "../ProbeType.enum";
+import { ProbeForm } from "../../../interfaces/ProbeForm.interface";
+import { ProbeTypeMap } from "../../../interfaces/ProbeType.enum";
 import useMutation from "../../../api/useMutation";
 
 export default function Page() {

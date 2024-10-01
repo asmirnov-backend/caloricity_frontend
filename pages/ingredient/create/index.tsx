@@ -4,7 +4,7 @@ import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-import { IngredientForm } from "../interfaces/IngredientForm.interface";
+import { IngredientForm } from "../../../interfaces/IngredientForm.interface";
 import useSubmit from "../../../api/useSubmit";
 import useMutation from "../../../api/useMutation";
 

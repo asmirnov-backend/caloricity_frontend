@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import { ProbeIngredientForm } from "../interfaces/IngredientForm.interface";
+import { ProbeIngredientForm } from "../../../interfaces/ProbeIngredientForm.interface";
 import useSubmit from "../../../api/useSubmit";
 import useMutation from "../../../api/useMutation";
 import usePageQuery from "../../../api/usePageQuery";

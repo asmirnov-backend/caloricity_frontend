@@ -1,12 +1,13 @@
-import { Input, Button, CircularProgress } from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import useMutation from "../../../api/useMutation";
 import useQuery from "../../../api/useQuery";
 import useSubmit from "../../../api/useSubmit";
-import { ProbeForm } from "../interfaces/ProbeForm.interface";
-import { ProbeTypeMap } from "../ProbeType.enum";
+import { ProbeForm } from "../../../interfaces/ProbeForm.interface";
+import { ProbeTypeMap } from "../../../interfaces/ProbeType.enum";
+import CustomLoader from "../../../components/CustomLoader/CustomLoader";
 
 export default function ProbeEditForm(input: { probeId: string }) {
   const { back } = useRouter();
@@ -24,7 +25,7 @@ export default function ProbeEditForm(input: { probeId: string }) {
   const { data, isLoading } = useQuery<ProbeForm>(input.probeId, "/probes");
   const onSubmit = useSubmit<ProbeForm>({ trigger });
 
-  if (isLoading) return <CircularProgress aria-label="Loading..." />;
+  if (isLoading) return <CustomLoader />;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

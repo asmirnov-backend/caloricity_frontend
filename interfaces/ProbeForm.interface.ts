@@ -1,4 +1,4 @@
-import { ProbeType } from "../ProbeType.enum";
+import { ProbeType } from "./ProbeType.enum";
 
 export interface ProbeForm {
   name: string;
