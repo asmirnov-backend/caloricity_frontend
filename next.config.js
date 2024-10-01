@@ -4,7 +4,7 @@ const nextConfig = {
   distDir: "build",
   cleanDistDir: true,
   output: "export",
-  basePath: "caloricity_frontend",
+  images: { unoptimized: true },
 };
 
 module.exports = nextConfig;
