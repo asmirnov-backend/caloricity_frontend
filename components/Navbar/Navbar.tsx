@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import {
   Navbar as NavbarUi,
   NavbarBrand,
@@ -7,9 +7,10 @@ import {
   NavbarItem,
   Link,
   Button,
-  Avatar,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+
+import ponchikbig from "../../public/ponchikbig.png";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -25,7 +26,14 @@ export default function Navbar() {
     >
       <NavbarBrand>
         <Link color={pathname === "/" ? "primary" : "foreground"} href="/">
-          Caloricity <Avatar size="sm" src="/ponchikbig.png" />
+          Caloricity{" "}
+          <Image
+            alt="ponchikbig"
+            className="mx-1"
+            height={32}
+            src={ponchikbig}
+            width={32}
+          />
         </Link>
       </NavbarBrand>
       <NavbarContent justify="center">
