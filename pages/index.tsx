@@ -1,4 +1,6 @@
-import { Image } from "@nextui-org/image";
+import Image from "next/image";
+
+import main from "../public/main.jpeg";
 
 export default function Home() {
   return (
@@ -7,7 +9,7 @@ export default function Home() {
         alt="main image"
         className="flex items-center justify-center"
         height={600}
-        src="/main.jpeg"
+        src={main}
         width={800}
       />
     </div>
