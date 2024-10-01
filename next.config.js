@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   distDir: "build",
+  cleanDistDir: true,
+  output: "export",
 };
 
 module.exports = nextConfig;
