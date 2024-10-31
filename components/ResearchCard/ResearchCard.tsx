@@ -8,7 +8,9 @@ export default function ResearchCard(input: {
   id: string;
   headerText: string;
   researchUrl: string;
-  data: Array<{ value?: number; label: string }>;
+  data: Array<
+    { value?: number; label: string } | { value?: number; label: string }[]
+  >;
 }) {
   return (
     <Card>
@@ -25,16 +27,40 @@ export default function ResearchCard(input: {
         </div>
       </CardHeader>
       <CardBody>
-        <div className="gap-2 grid grid-cols-1">
-          {input.data.map((e) => (
-            <Input
-              key={e.label}
-              isReadOnly
-              label={e.label}
-              value={e.value?.toString()}
-              variant="bordered"
-            />
-          ))}
+        <div className="gap-3 grid">
+          {input.data.map((e) => {
+            if (Array.isArray(e)) {
+              return (
+                <div
+                  key={e[0].label + "1"}
+                  className={`gap-2 grid grid-cols-${e.length}`}
+                >
+                  {e.map((ee) => (
+                    <Input
+                      key={ee.label + "1"}
+                      isReadOnly
+                      description={ee.label}
+                      labelPlacement="outside"
+                      value={ee.value?.toString()}
+                      variant="bordered"
+                    />
+                  ))}
+                </div>
+              );
+            }
+
+            return (
+              <div key={e.label} className="grid-cols-1">
+                <Input
+                  isReadOnly
+                  description={e.label}
+                  labelPlacement="outside"
+                  value={e.value?.toString()}
+                  variant="bordered"
+                />
+              </div>
+            );
+          })}
         </div>
       </CardBody>
     </Card>

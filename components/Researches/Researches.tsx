@@ -15,7 +15,7 @@ export default function Researches(input: { probeId: string }) {
           <ResearchCreateDropdown probeId={input.probeId} />
         </div>
       </div>
-      <div className="gap-4 mt-5 grid sm:grid-cols-3">
+      <div className="gap-4 mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         <DrySubstancesResearchCard probeId={input.probeId} />
         <CarbohydratesResearchCard probeId={input.probeId} />
         <FatsResearchCard probeId={input.probeId} />
