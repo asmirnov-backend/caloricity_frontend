@@ -8,3 +8,8 @@ export interface ProbeForm {
   bankaEmptyMass: number;
   bankaWithProbeMass: number;
 }
+
+export type ProbeDto = ProbeForm & {
+  massFact: number;
+  minerals: number;
+};

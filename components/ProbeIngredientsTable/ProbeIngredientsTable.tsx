@@ -49,7 +49,7 @@ export default function ProbeIngredientsTable(input: { probeId: string }) {
           </Button>
         </div>
       </div>
-      <div className="max-w-[90rem] mx-auto w-full">
+      <div className="mx-auto w-full">
         <Table
           aria-label="Таблица ингридиентов"
           bottomContent={

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import useMutation from "../../../api/useMutation";
 import useQuery from "../../../api/useQuery";
 import useSubmit from "../../../api/useSubmit";
-import { ProbeForm } from "../../../interfaces/ProbeForm.interface";
+import { ProbeDto, ProbeForm } from "../../../interfaces/ProbeForm.interface";
 import { ProbeTypeMap } from "../../../interfaces/ProbeType.enum";
 import CustomLoader from "../../../components/CustomLoader/CustomLoader";
 
@@ -22,7 +22,7 @@ export default function ProbeEditForm(input: { probeId: string }) {
     id: input.probeId,
   });
 
-  const { data, isLoading } = useQuery<ProbeForm>(input.probeId, "/probes");
+  const { data, isLoading } = useQuery<ProbeDto>(input.probeId, "/probes");
   const onSubmit = useSubmit<ProbeForm>({ trigger });
 
   if (isLoading) return <CustomLoader />;
@@ -97,6 +97,18 @@ export default function ProbeEditForm(input: { probeId: string }) {
           })}
           errorMessage={formErrors.bankaEmptyMass?.message?.toString()}
           isInvalid={formErrors.bankaEmptyMass ? true : false}
+        />
+        <Input
+          isDisabled
+          label="Масса фактическая, г"
+          value={data?.massFact.toString()}
+          variant="bordered"
+        />
+        <Input
+          isDisabled
+          label="Минеральные вещества, г"
+          value={data?.minerals.toString()}
+          variant="bordered"
         />
         <Button color="primary" disabled={isMutating} type="submit">
           Сохранить

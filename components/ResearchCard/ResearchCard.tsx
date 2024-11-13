@@ -33,7 +33,7 @@ export default function ResearchCard(input: {
               return (
                 <div
                   key={e[0].label + "1"}
-                  className={`gap-2 grid grid-cols-${e.length}`}
+                  className={`gap-2 grid grid-cols-2`}
                 >
                   {e.map((ee) => (
                     <Input
