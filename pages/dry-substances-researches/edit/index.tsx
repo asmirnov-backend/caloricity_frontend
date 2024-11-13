@@ -24,12 +24,12 @@ export default function Page() {
 
   const { data, isLoading } = useQuery<DrySubstanceResearchForm>(
     id,
-    "/dry-substances-researches",
+    "/dry-substances-researches"
   );
 
   const { trigger, isMutating } = useMutation<DrySubstanceResearchForm>(
     "/dry-substances-researches",
-    { method: "PUT", id: id },
+    { method: "PUT", id: id }
   );
 
   const onSubmit = useSubmit<DrySubstanceResearchForm>({
@@ -40,63 +40,99 @@ export default function Page() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-        <Input
-          isRequired
-          label="Масса бюксы первая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("byuksaParallelFirst", {
-            value: data?.byuksaParallelFirst,
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.byuksaParallelFirst?.message?.toString()}
-          isInvalid={formErrors.byuksaParallelFirst ? true : false}
-        />
-        <Input
-          isRequired
-          label="Масса бюксы вторая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("byuksaParallelSecond", {
-            value: data?.byuksaParallelSecond,
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.byuksaParallelSecond?.message?.toString()}
-          isInvalid={formErrors.byuksaParallelSecond ? true : false}
-        />
-        <Input
-          isRequired
-          label="Масса бюксы с пробой после высушивания первая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("byuksaAfterDryingParallelFirst", {
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
-            value: data?.byuksaAfterDryingParallelFirst,
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.byuksaAfterDryingParallelFirst?.message?.toString()}
-          isInvalid={formErrors.byuksaAfterDryingParallelFirst ? true : false}
-        />
-        <Input
-          isRequired
-          label="Масса бюксы с пробой после высушивания вторая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("byuksaAfterDryingParallelSecond", {
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
-            value: data?.byuksaAfterDryingParallelSecond,
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.byuksaAfterDryingParallelSecond?.message?.toString()}
-          isInvalid={formErrors.byuksaAfterDryingParallelSecond ? true : false}
-        />
+      <div className="my-5 lg:px-6 mx-auto w-3/4 flex flex-col gap-4">
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса бюксы первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("byuksaParallelFirst", {
+              value: data?.byuksaParallelFirst,
+              required: "Поле обязательно",
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.byuksaParallelFirst?.message?.toString()}
+            isInvalid={formErrors.byuksaParallelFirst ? true : false}
+          />
+          <Input
+            isRequired
+            label="Масса бюксы вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("byuksaParallelSecond", {
+              value: data?.byuksaParallelSecond,
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.byuksaParallelSecond?.message?.toString()}
+            isInvalid={formErrors.byuksaParallelSecond ? true : false}
+          />
+        </div>
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса бюксы с пробой после высушивания первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("byuksaAfterDryingParallelFirst", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.byuksaAfterDryingParallelFirst,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.byuksaAfterDryingParallelFirst?.message?.toString()}
+            isInvalid={formErrors.byuksaAfterDryingParallelFirst ? true : false}
+          />
+          <Input
+            isRequired
+            label="Масса бюксы с пробой после высушивания вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("byuksaAfterDryingParallelSecond", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.byuksaAfterDryingParallelSecond,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.byuksaAfterDryingParallelSecond?.message?.toString()}
+            isInvalid={
+              formErrors.byuksaAfterDryingParallelSecond ? true : false
+            }
+          />
+        </div>
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса навески первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("massNaveskiParallelFirst", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.massNaveskiParallelFirst,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.massNaveskiParallelFirst?.message?.toString()}
+            isInvalid={formErrors.massNaveskiParallelFirst ? true : false}
+          />
+          <Input
+            isRequired
+            label="Масса навески вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("massNaveskiParallelSecond", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.massNaveskiParallelSecond,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.massNaveskiParallelSecond?.message?.toString()}
+            isInvalid={formErrors.massNaveskiParallelSecond ? true : false}
+          />
+        </div>
         <Button color="primary" disabled={isMutating} type="submit">
           Сохранить
         </Button>

@@ -50,6 +50,16 @@ export default function FatsResearchCard(input: { probeId: string }) {
             label: "Масса сухих остатков вторая параллель, г",
           },
         ],
+        [
+          {
+            value: researchData.massNaveskiParallelFirst,
+            label: "Масса навески первая параллель, г",
+          },
+          {
+            value: researchData.massNaveskiParallelSecond,
+            label: "Масса навески вторая параллель, г",
+          },
+        ],
         {
           value: researchData.dryResidueWeightAverage,
           label: "Средняя масса сухих остатков, г",

@@ -9,3 +9,7 @@ export const ProbeTypeMap = {
   [ProbeType.SECOND]: "Второе",
   [ProbeType.THIRD]: "Третье",
 } as const;
+
+export function getDefaultMassNaveskiByProbeType(probeType: string | null) {
+  return probeType?.toUpperCase() === ProbeType.SECOND ? 5 : 10;
+}

@@ -3,5 +3,7 @@ export interface DrySubstanceResearchForm {
   byuksaParallelSecond: number;
   byuksaAfterDryingParallelFirst: number;
   byuksaAfterDryingParallelSecond: number;
+  massNaveskiParallelFirst: number;
+  massNaveskiParallelSecond: number;
   probeId: string;
 }

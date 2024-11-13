@@ -23,12 +23,12 @@ export default function Page() {
 
   const { data, isLoading } = useQuery<ProteinsResearchForm>(
     id,
-    "/proteins-researches",
+    "/proteins-researches"
   );
 
   const { trigger, isMutating } = useMutation<ProteinsResearchForm>(
     "/proteins-researches",
-    { method: "PUT", id: id },
+    { method: "PUT", id: id }
   );
 
   const onSubmit = useSubmit<ProteinsResearchForm>({
@@ -39,35 +39,68 @@ export default function Page() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-        <Input
-          isRequired
-          label="Объём титранта первая параллель, г/см^3"
-          type="number"
-          variant="bordered"
-          {...register("titrantVolumeParallelFirst", {
-            value: data?.titrantVolumeParallelFirst,
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.titrantVolumeParallelFirst?.message?.toString()}
-          isInvalid={formErrors.titrantVolumeParallelFirst ? true : false}
-        />
-        <Input
-          isRequired
-          label="Объём титранта вторая параллель, г/см^3"
-          type="number"
-          variant="bordered"
-          {...register("titrantVolumeParallelSecond", {
-            value: data?.titrantVolumeParallelSecond,
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.titrantVolumeParallelSecond?.message?.toString()}
-          isInvalid={formErrors.titrantVolumeParallelSecond ? true : false}
-        />
+      <div className="my-5 lg:px-6 mx-auto w-3/4 flex flex-col gap-4">
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Объём титранта первая параллель, г/см^3"
+            type="number"
+            variant="bordered"
+            {...register("titrantVolumeParallelFirst", {
+              value: data?.titrantVolumeParallelFirst,
+              required: "Поле обязательно",
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.titrantVolumeParallelFirst?.message?.toString()}
+            isInvalid={formErrors.titrantVolumeParallelFirst ? true : false}
+          />
+          <Input
+            isRequired
+            label="Объём титранта вторая параллель, г/см^3"
+            type="number"
+            variant="bordered"
+            {...register("titrantVolumeParallelSecond", {
+              value: data?.titrantVolumeParallelSecond,
+              required: "Поле обязательно",
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.titrantVolumeParallelSecond?.message?.toString()}
+            isInvalid={formErrors.titrantVolumeParallelSecond ? true : false}
+          />
+        </div>
+
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса навески первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("massNaveskiParallelFirst", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.massNaveskiParallelFirst,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.massNaveskiParallelFirst?.message?.toString()}
+            isInvalid={formErrors.massNaveskiParallelFirst ? true : false}
+          />
+          <Input
+            isRequired
+            label="Масса навески вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("massNaveskiParallelSecond", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.massNaveskiParallelSecond,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.massNaveskiParallelSecond?.message?.toString()}
+            isInvalid={formErrors.massNaveskiParallelSecond ? true : false}
+          />
+        </div>
         <Input
           isRequired
           label="Объём контроля, г/см^3"

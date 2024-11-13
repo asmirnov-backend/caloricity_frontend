@@ -6,7 +6,14 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-export default function ResearchCreateDropdown(input: { probeId: string }) {
+import { ProbeType } from "../../interfaces/ProbeType.enum";
+
+export default function ResearchCreateDropdown(input: {
+  probeId: string;
+  probeType?: ProbeType;
+}) {
+  const suffix = `create?probe-id=${input.probeId}&probe-type=${input.probeType}`;
+
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -15,30 +22,22 @@ export default function ResearchCreateDropdown(input: { probeId: string }) {
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem
-          key="1"
-          href={`/dry-substances-researches/create?probe-id=${input.probeId}`}
-        >
+        <DropdownItem key="1" href={"/dry-substances-researches/" + suffix}>
           Сухие вещества
         </DropdownItem>
-        <DropdownItem
-          key="2"
-          href={`/proteins-researches/create?probe-id=${input.probeId}`}
-        >
-          Белки
-        </DropdownItem>
-        <DropdownItem
-          key="3"
-          href={`/fats-researches/create?probe-id=${input.probeId}`}
-        >
+        {input.probeType !== ProbeType.THIRD && (
+          <DropdownItem key="2" href={`/proteins-researches/` + suffix}>
+            Белки
+          </DropdownItem>
+        )}
+        <DropdownItem key="3" href={`/fats-researches/` + suffix}>
           Жиры
         </DropdownItem>
-        <DropdownItem
-          key="4"
-          href={`/carbohydrates-researches/create?probe-id=${input.probeId}`}
-        >
-          Углеводы
-        </DropdownItem>
+        {input.probeType == ProbeType.THIRD && (
+          <DropdownItem key="4" href={`/carbohydrates-researches/` + suffix}>
+            Углеводы
+          </DropdownItem>
+        )}
       </DropdownMenu>
     </Dropdown>
   );

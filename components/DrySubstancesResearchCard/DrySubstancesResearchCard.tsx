@@ -42,6 +42,16 @@ export default function DrySubstancesResearchCard(input: { probeId: string }) {
         ],
         [
           {
+            value: researchData.massNaveskiParallelFirst,
+            label: "Масса навески первая параллель, г",
+          },
+          {
+            value: researchData.massNaveskiParallelSecond,
+            label: "Масса навески вторая параллель, г",
+          },
+        ],
+        [
+          {
             value: researchData.dryResidueWeightParallelFirst,
             label: "Масса сухих остатков первая параллель, г",
           },
