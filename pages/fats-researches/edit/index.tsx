@@ -24,12 +24,12 @@ export default function Page() {
 
   const { data, isLoading } = useQuery<FatsResearchForm>(
     id,
-    "/fats-researches",
+    "/fats-researches"
   );
 
   const { trigger, isMutating } = useMutation<FatsResearchForm>(
     "/fats-researches",
-    { method: "PUT", id: id },
+    { method: "PUT", id: id }
   );
 
   const onSubmit = useSubmit<FatsResearchForm>({
@@ -40,71 +40,105 @@ export default function Page() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="my-5 lg:px-6 mx-auto w-1/2 flex flex-col gap-4">
-        <Input
-          isRequired
-          label="Масса патрона до экстракции первая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("patronMassBeforeExtractionParallelFirst", {
-            value: data?.patronMassBeforeExtractionParallelFirst,
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.patronMassBeforeExtractionParallelFirst?.message?.toString()}
-          isInvalid={
-            formErrors.patronMassBeforeExtractionParallelFirst ? true : false
-          }
-        />
-        <Input
-          isRequired
-          label="Масса патрона до экстракции вторая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("patronMassBeforeExtractionParallelSecond", {
-            value: data?.patronMassBeforeExtractionParallelSecond,
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.patronMassBeforeExtractionParallelSecond?.message?.toString()}
-          isInvalid={
-            formErrors.patronMassBeforeExtractionParallelSecond ? true : false
-          }
-        />
-        <Input
-          isRequired
-          label="Масса патрона после экстракции первая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("patronMassAfterExtractionParallelFirst", {
-            value: data?.patronMassAfterExtractionParallelFirst,
-            required: "Поле обязательно",
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.patronMassAfterExtractionParallelFirst?.message?.toString()}
-          isInvalid={
-            formErrors.patronMassAfterExtractionParallelFirst ? true : false
-          }
-        />
-        <Input
-          isRequired
-          label="Масса патрона после экстракции вторая параллель, г"
-          type="number"
-          variant="bordered"
-          {...register("patronMassAfterExtractionParallelSecond", {
-            value: data?.patronMassAfterExtractionParallelSecond,
-            min: { value: 0, message: "Масса не может быть меньше нуля" },
-            required: "Поле обязательно",
-            valueAsNumber: true,
-          })}
-          errorMessage={formErrors.patronMassAfterExtractionParallelSecond?.message?.toString()}
-          isInvalid={
-            formErrors.patronMassAfterExtractionParallelSecond ? true : false
-          }
-        />
+      <div className="my-5 lg:px-6 mx-auto w-3/4 flex flex-col gap-4">
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса патрона до экстракции первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("patronMassBeforeExtractionParallelFirst", {
+              value: data?.patronMassBeforeExtractionParallelFirst,
+              required: "Поле обязательно",
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.patronMassBeforeExtractionParallelFirst?.message?.toString()}
+            isInvalid={
+              formErrors.patronMassBeforeExtractionParallelFirst ? true : false
+            }
+          />
+          <Input
+            isRequired
+            label="Масса патрона до экстракции вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("patronMassBeforeExtractionParallelSecond", {
+              value: data?.patronMassBeforeExtractionParallelSecond,
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.patronMassBeforeExtractionParallelSecond?.message?.toString()}
+            isInvalid={
+              formErrors.patronMassBeforeExtractionParallelSecond ? true : false
+            }
+          />
+        </div>
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса патрона после экстракции первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("patronMassAfterExtractionParallelFirst", {
+              value: data?.patronMassAfterExtractionParallelFirst,
+              required: "Поле обязательно",
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.patronMassAfterExtractionParallelFirst?.message?.toString()}
+            isInvalid={
+              formErrors.patronMassAfterExtractionParallelFirst ? true : false
+            }
+          />
+          <Input
+            isRequired
+            label="Масса патрона после экстракции вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("patronMassAfterExtractionParallelSecond", {
+              value: data?.patronMassAfterExtractionParallelSecond,
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.patronMassAfterExtractionParallelSecond?.message?.toString()}
+            isInvalid={
+              formErrors.patronMassAfterExtractionParallelSecond ? true : false
+            }
+          />
+        </div>
+        <div className="gap-2 grid grid-cols-2">
+          <Input
+            isRequired
+            label="Масса навески первая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("massNaveskiParallelFirst", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.massNaveskiParallelFirst,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.massNaveskiParallelFirst?.message?.toString()}
+            isInvalid={formErrors.massNaveskiParallelFirst ? true : false}
+          />
+          <Input
+            isRequired
+            label="Масса навески вторая параллель, г"
+            type="number"
+            variant="bordered"
+            {...register("massNaveskiParallelSecond", {
+              min: { value: 0, message: "Масса не может быть меньше нуля" },
+              required: "Поле обязательно",
+              value: data?.massNaveskiParallelSecond,
+              valueAsNumber: true,
+            })}
+            errorMessage={formErrors.massNaveskiParallelSecond?.message?.toString()}
+            isInvalid={formErrors.massNaveskiParallelSecond ? true : false}
+          />
+        </div>
         <Button color="primary" disabled={isMutating} type="submit">
           Сохранить
         </Button>

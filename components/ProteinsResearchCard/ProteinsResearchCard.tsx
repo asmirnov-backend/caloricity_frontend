@@ -20,14 +20,26 @@ export default function ProteinsResearchCard(input: { probeId: string }) {
   return (
     <ResearchCard
       data={[
-        {
-          value: researchData.titrantVolumeParallelFirst,
-          label: "Объём титранта первая параллель, г/см^3",
-        },
-        {
-          value: researchData.titrantVolumeParallelSecond,
-          label: "Объём титранта вторая параллель, г/см^3",
-        },
+        [
+          {
+            value: researchData.titrantVolumeParallelFirst,
+            label: "Объём титранта первая параллель, г/см^3",
+          },
+          {
+            value: researchData.titrantVolumeParallelSecond,
+            label: "Объём титранта вторая параллель, г/см^3",
+          },
+        ],
+        [
+          {
+            value: researchData.massNaveskiParallelFirst,
+            label: "Масса навески первая параллель, г",
+          },
+          {
+            value: researchData.massNaveskiParallelSecond,
+            label: "Масса навески вторая параллель, г",
+          },
+        ],
         { value: researchData.controlVolume, label: "Объём контроля, г/см^3" },
         {
           value: researchData.coefficient,

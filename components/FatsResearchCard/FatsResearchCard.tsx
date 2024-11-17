@@ -20,21 +20,49 @@ export default function FatsResearchCard(input: { probeId: string }) {
   return (
     <ResearchCard
       data={[
+        [
+          {
+            value: researchData.patronMassBeforeExtractionParallelFirst,
+            label: "Масса патрона до экстракции первая параллель, г",
+          },
+          {
+            value: researchData.patronMassBeforeExtractionParallelSecond,
+            label: "Масса патрона до экстракции вторая параллель, г",
+          },
+        ],
+        [
+          {
+            value: researchData.patronMassAfterExtractionParallelFirst,
+            label: "Масса патрона после экстракции первая параллель, г",
+          },
+          {
+            value: researchData.patronMassAfterExtractionParallelSecond,
+            label: "Масса патрона после экстракции вторая параллель, г",
+          },
+        ],
+        [
+          {
+            value: researchData.dryResidueWeightParallelFirst,
+            label: "Масса сухих остатков первая параллель, г",
+          },
+          {
+            value: researchData.dryResidueWeightParallelSecond,
+            label: "Масса сухих остатков вторая параллель, г",
+          },
+        ],
+        [
+          {
+            value: researchData.massNaveskiParallelFirst,
+            label: "Масса навески первая параллель, г",
+          },
+          {
+            value: researchData.massNaveskiParallelSecond,
+            label: "Масса навески вторая параллель, г",
+          },
+        ],
         {
-          value: researchData.patronMassBeforeExtractionParallelFirst,
-          label: "Масса патрона до экстракции первая параллель, г",
-        },
-        {
-          value: researchData.patronMassBeforeExtractionParallelSecond,
-          label: "Масса патрона до экстракции вторая параллель, г",
-        },
-        {
-          value: researchData.patronMassAfterExtractionParallelFirst,
-          label: "Масса патрона после экстракции первая параллель, г",
-        },
-        {
-          value: researchData.patronMassAfterExtractionParallelSecond,
-          label: "Масса патрона после экстракции вторая параллель, г",
+          value: researchData.dryResidueWeightAverage,
+          label: "Средняя масса сухих остатков, г",
         },
       ]}
       headerText="Жиры"
